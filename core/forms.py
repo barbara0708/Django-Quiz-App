@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 class NewUserCreationForm(UserCreationForm):
-    birthday=forms.DateField()
+    birthday=forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     email=forms.EmailField(required=True)
 
     class Meta:
