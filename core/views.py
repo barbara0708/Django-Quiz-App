@@ -10,6 +10,8 @@ def index(request):
 def categories(request):
     return render(request,'core/categories.html')
 
+def login(request):
+    return render(request,'core/login.html')
 def signup(request):
     if request.method=='POST':
         form=NewUserCreationForm(request.POST)

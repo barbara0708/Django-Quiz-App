@@ -1,17 +1,21 @@
 {% extends 'core/header.html' %}
 {% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+    
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
-<section class="vh-100 gradient-custom" style="background-image: url('{% static 'images/signup.jpg' %}');">
+<section class="vh-100 gradient-custom" style="background-image: url('{% static 'images/signup.jpg' %}')">
     <div class="container py-5 h-100">
       <div class="row justify-content-center align-items-center h-100">
         <div class="col-12 col-lg-9 col-xl-7">
           <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
             <div class="card-body p-4 p-md-5">
               <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
-              <form>
-  
+              <form method="POST">
+                {% csrf_token %}
                 <div class="row">
                   <div class="col-md-12 mb-4">
   
