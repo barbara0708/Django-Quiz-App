@@ -19,9 +19,9 @@ def signup_view(request):
         if form.is_valid():
             user=form.save()
             login(request,user)
-            #messages.success(request,"Registration successful")
+            messages.success(request,"Registration successful")
             return redirect('login')
-        #messages.error(request,"Unsuccessful registration. Invalid information.")
+        messages.error(request,"Unsuccessful registration. Invalid information.")
     else:
         form=NewUserCreationForm()
     return render(request,'core/registration.html',context={'form':form})
