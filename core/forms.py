@@ -3,16 +3,11 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 class NewUserCreationForm(UserCreationForm):
+    first_name=forms.CharField(max_length=100)
+    last_name=forms.CharField(max_length=100)
     birthday=forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     email=forms.EmailField(required=True)
 
     class Meta:
         model=User
-        fields=("username","email","birthday","password1","password2")
-    def save(self, commit=True):
-        user=super(NewUserCreationForm,self).save(commit=True)
-        user.email=self.cleaned_data['email']
-        user.birthday=self.cleaned_data['birthday']
-        if commit:
-            user.save()
-        return user
+        fields=["username","first_name","last_name","email","birthday","password1","password2"]
