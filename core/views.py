@@ -15,9 +15,9 @@ def login_view(request):
     if request.method=='POST':
         form=AuthenticationForm(request=request,data=request.POST)
         if form.is_valid():
-            email=form.cleaned_data.get('emailLog')
-            password=form.cleaned_data.get('pass')
-            user=authenticate(email=email,password=password)
+            username=form.cleaned_data.get('username')
+            password=form.cleaned_data.get('password')
+            user=authenticate(request,username=username,password=password)
             if user is not None:
                 login(request,user)
                 messages.info(request,"You are logged in now")
