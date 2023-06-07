@@ -1,7 +1,8 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
-from django.contrib.auth import login
+from django.contrib.auth import login,authenticate
 from .forms import NewUserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 
 
 def index(request):
@@ -11,14 +12,28 @@ def categories(request):
     return render(request,'core/categories.html')
 
 def login_view(request):
-    return render(request,'core/login.html')
+    if request.method=='POST':
+        form=AuthenticationForm(request=request,data=request.POST)
+        if form.is_valid():
+            email=form.cleaned_data.get('emailLog')
+            password=form.cleaned_data.get('pass')
+            user=authenticate(email=email,password=password)
+            if user is not None:
+                login(request,user)
+                messages.info(request,"You are logged in now")
+            else:    
+                messages.error(request,"Invalid email or password")
+            return redirect('categories')
+        else:
+            messages.error(request,"Invalid email or password")
+    form=AuthenticationForm()
+    return render(request,'core/login.html',context={'login_form':form})
 
 def signup_view(request):
     if request.method=='POST':
         form=NewUserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            #login(request,user)
+            user=form.save()
             messages.success(request,"Registration successful")
             return redirect('login')
         messages.error(request,"Unsuccessful registration. Invalid information.")
