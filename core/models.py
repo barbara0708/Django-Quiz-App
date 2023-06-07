@@ -1,7 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
 
-
-#class User(AbstractUser):
-#    birthday=models.DateField(null=False, blank=True)
-    
+class Categories(models.Model):
+    name=models.CharField(max_length=100)
+    slug=models.SlugField(unique=True)
+    def __str__(self) :
+        return str(self.name)
