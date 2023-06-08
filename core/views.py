@@ -3,13 +3,15 @@ from django.contrib import messages
 from django.contrib.auth import login,authenticate
 from .forms import NewUserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
+from .models import Categories
 
 
 def index(request):
     return render(request,'core/index.html')
 
 def categories(request):
-    return render(request,'core/categories.html')
+    all_categories=Categories.objects.all()
+    return render(request,'core/categories.html',context={'categories':all_categories})
 
 def login_view(request):
     if request.method=='POST':
