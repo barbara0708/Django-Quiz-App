@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
-from django.contrib.auth import login,authenticate
+from django.contrib.auth import login,authenticate,logout
 from .forms import NewUserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 from .models import Categories
@@ -9,6 +9,11 @@ from django.contrib.auth.decorators import login_required
 
 def index(request):
     return render(request,'core/index.html')
+
+def logout_request(request):
+    logout(request)
+    messages.info(request, "You have successfully logged out.")
+    return redirect('homepage')
 
 @login_required
 def categories(request):
