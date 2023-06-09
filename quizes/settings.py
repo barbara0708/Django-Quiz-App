@@ -80,6 +80,8 @@ LOGOUT_REDIRECT_URL='/'
 LOGIN_URL='/login/'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
 
 DATABASES = {
     'default': {

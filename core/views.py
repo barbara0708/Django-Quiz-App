@@ -52,3 +52,6 @@ def signup_view(request):
 
 def reset_password(request):
     return render(request,'core/reset_password_form.html')
+
+def reset_done(request):
+    return render(request,'core/reset_password_done.html')
