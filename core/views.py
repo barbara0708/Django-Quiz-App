@@ -4,11 +4,13 @@ from django.contrib.auth import login,authenticate
 from .forms import NewUserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 from .models import Categories
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
     return render(request,'core/index.html')
 
+@login_required
 def categories(request):
     all_categories=Categories.objects.all()
     return render(request,'core/categories.html',context={'categories':all_categories})
