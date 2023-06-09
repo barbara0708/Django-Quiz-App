@@ -76,7 +76,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'quizes.wsgi.application'
 
-
+LOGOUT_REDIRECT_URL='/'
+LOGIN_URL='/login/'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
