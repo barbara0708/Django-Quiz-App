@@ -49,3 +49,6 @@ def signup_view(request):
     else:
         form=NewUserCreationForm()
     return render(request,'core/registration.html',context={'form':form})
+
+def reset_password(request):
+    return redirect(request,'core/reset_password_form.html')
