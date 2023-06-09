@@ -8,5 +8,5 @@ urlpatterns=[
     path('categories/category/',include('category.urls'),name='category'),
     path('sign-up/',views.signup_view,name="sign-up"),
     path('login/',views.login_view,name="login"),
-    path('logout/',auth_views.LogoutView.as_view(template_name='core/logout.html'),name='logout')
+    path('logout/',views.logout_request,name='logout')
 ]

@@ -13,7 +13,7 @@ def index(request):
 def logout_request(request):
     logout(request)
     messages.info(request, "You have successfully logged out.")
-    return redirect('homepage')
+    return redirect('index')
 
 @login_required
 def categories(request):

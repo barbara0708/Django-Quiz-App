@@ -24,7 +24,7 @@
                             </div>
                             <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
                             <div class="d-flex">
-                                {% if user.is_authenticated %}
+                                {% if request.user.is_authenticated %}
                                 <button class="btn btn-outline-light flex-shrink-0 bg-info text-light" style="width: 20rem; height: 3rem;" type="button">
                                     <a class="nav-link text-light" aria-current="page" href="login/">Let's get started!</a>
                                     
