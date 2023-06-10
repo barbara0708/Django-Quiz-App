@@ -55,3 +55,9 @@ def reset_password(request):
 
 def reset_done(request):
     return render(request,'core/reset_password_done.html')
+
+def reset_complete(request):
+    return render(request,'core/reset_password_complete.html')
+
+def reset_confirm(request):
+    return render(request,'core/reset_password_confirm.html')

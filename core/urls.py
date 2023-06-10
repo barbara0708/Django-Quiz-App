@@ -9,5 +9,7 @@ urlpatterns=[
     path('login/',views.login_view,name="login"),
     path('logout/',views.logout_request,name='logout'),
     path('reset/',views.reset_password,name='reset'),
-    path('reset/done',views.reset_done,name='done')
+    path('reset/done',views.reset_done,name='done'),
+    path('reset/complete',views.reset_complete,name='complete'),
+    path('reset/confirm',views.reset_confirm,name='confirm')
 ]
