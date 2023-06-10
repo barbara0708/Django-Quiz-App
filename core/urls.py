@@ -9,8 +9,8 @@ urlpatterns=[
     path('sign-up/',views.signup_view,name="sign-up"),
     path('login/',views.login_view,name="login"),
     path('logout/',views.logout_request,name='logout'),
-    path('reset/',auth_views.PasswordResetView.as_view(),name='reset_password'),
-    path('reset/done',auth_views.PasswordResetDoneView.as_view(),name='password_reset_done'),
-    path('reset/complete',auth_views.PasswordResetCompleteView.as_view(),name='password_reset_complete'),
-    path('reset/<uidb64>/<token>/confirm',auth_views.PasswordResetConfirmView.as_view(),name='password_reset_confirm')
+    path('reset/',auth_views.PasswordResetView.as_view(template_name='core/reset_password_form.html'),name='reset_password'),
+    path('reset_done/',auth_views.PasswordResetDoneView.as_view(template_name='core/reset_password_done.html'),name='password_reset_done'),
+    path('reset_complete/',auth_views.PasswordResetCompleteView.as_view(template_name='core/reset_password_complete.html'),name='password_reset_complete'),
+    path('reset/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(template_name='core/reset_password_confirm.html'),name='password_reset_confirm')
 ]
