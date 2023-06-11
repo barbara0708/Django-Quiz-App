@@ -1,3 +1,4 @@
+from msilib.schema import ListView
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth import login,authenticate,logout
@@ -61,3 +62,18 @@ def reset_complete(request):
 
 def reset_confirm(request):
     return render(request,'core/reset_password_confirm.html')
+
+# class search_view(ListView):
+#     model = Categories
+#     template_name = 'categories.html'
+#     context_object_name = 'all_search_results'
+
+#     def get_queryset(self):
+#        result = super(search_view, self).get_queryset()
+#        query = self.request.GET.get('search')
+#        if query:
+#           postresult = Categories.objects.filter(name__contains=query)
+#           result = postresult
+#        else:
+#            result = None
+#        return result
