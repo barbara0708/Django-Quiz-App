@@ -41,11 +41,12 @@ INSTALLED_APPS = [
     'core',
     'category',
     'bootstrap5',
-    'crispy_forms'
+    'crispy_forms',
+    'crispy_bootstrap5'
 ]
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -85,7 +86,7 @@ EMAIL_HOST='smtp.gmail.com'
 EMAIL_PORT=587
 EMAIL_USE_TLS=True
 EMAIL_HOST_USER='marcelineabadir527@gmail.com'
-EMAIL_HOST_PASSWORD='reuqyqlynnfgmkmt'
+EMAIL_HOST_PASSWORD='ywcgqudcakhbbhat'
 
 
 
