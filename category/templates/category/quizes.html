@@ -5,25 +5,32 @@
 {% block content %}
 <div class="container-fluid">
     <div class="row">
-        <div class="col-12 mt-3">
-            <div class="card">
-                <div class="card-horizontal">
-                    <div class="img-square-wrapper">
-                        <img class="" src="{{quizes.img.url}}" alt="Card image cap">
+        <div class="col-6 mt-3" style="margin: auto;">
+            <div class="card" style="display: flex;">
+                <div class="row">
+                    <div class="col-10">
+                        <div class="card-horizontal" >
+                            <div class="img-square-wrapper">
+                                <img class="" src="{{quizes.img.url}}" style="max-width: 20%; max-height: 20%;" alt="Card image cap">
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">{{quizes.quiz_name}}</h4>
+                                <p class="card-text">{{quizes.desc}}</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <h4 class="card-title">{{quizes.quiz_name}}</h4>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <div class="col-2">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                            </svg></div>
                     </div>
                 </div>
-                <div class="card-footer">
-                    <small class="text-muted">Last updated 3 mins ago</small>
-                </div>
+                
+                
             </div>
         </div>
     </div>
 </div>
-    <a href="quiz/{{quizes.url}}"></a>
-    <img src=""/>
-
+    <a href="quiz/{{quizes.url}}">
 {% endblock %}
