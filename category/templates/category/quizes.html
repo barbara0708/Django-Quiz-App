@@ -3,8 +3,27 @@
 {% block title %}Categories{% endblock %}
 
 {% block content %}
-
-    <a href="quiz/{{quizes.url}}">{{quizes.quiz_name}}</a>
-    <img src="{{quizes.img.url}}"/>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 mt-3">
+            <div class="card">
+                <div class="card-horizontal">
+                    <div class="img-square-wrapper">
+                        <img class="" src="{{quizes.img.url}}" alt="Card image cap">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">{{quizes.quiz_name}}</h4>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Last updated 3 mins ago</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <a href="quiz/{{quizes.url}}"></a>
+    <img src=""/>
 
 {% endblock %}
