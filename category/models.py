@@ -7,6 +7,7 @@ class Quiz(models.Model):
     desc=models.CharField(max_length=200,blank=True,null=True)
     category=models.ForeignKey(Categories,on_delete=models.CASCADE,blank=True,null=True)
     url=models.SlugField(unique=True,blank=True,null=True)
+    img=models.ImageField(upload_to='images/',blank=True,null=True)
     def __str__(self) :
         return str(self.quiz_name)
 
