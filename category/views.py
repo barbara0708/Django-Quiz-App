@@ -11,5 +11,6 @@ def quizes(request,slug):
     return render(request,'category/quizes.html',context={'quizes':all_quizes})
 
 @login_required
-def quiz(request,slug,id):
-    return render(request,'category/quiz.html')
+def quiz(request,url):
+    quiz=Quiz.objects.get(url=url)
+    return render(request,'category/quiz.html',context={'quiz':quiz})

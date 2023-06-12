@@ -18,7 +18,11 @@ def logout_request(request):
 
 @login_required
 def categories(request):
-    all_categories=Categories.objects.all()
+    cat=request.GET.get('search_category')
+    if cat is not None:
+        all_categories=Categories.objects.filter(name__contains=cat)
+    else:
+        all_categories=Categories.objects.all()
     return render(request,'core/categories.html',context={'categories':all_categories})
 
 def login_view(request):

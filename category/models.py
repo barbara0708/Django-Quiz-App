@@ -11,7 +11,7 @@ class Quiz(models.Model):
         return str(self.quiz_name)
 
 class Question(models.Model):
-    quiz=models.OneToOneField(Quiz,related_name='question',on_delete=models.CASCADE,blank=True,null=True)
+    quiz=models.ForeignKey(Quiz,related_name='question',on_delete=models.CASCADE,blank=True,null=True)
     content=models.CharField(max_length=200,blank=True,null=True)
     def __str__(self):
         return str(self.content) 
