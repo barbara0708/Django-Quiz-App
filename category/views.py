@@ -14,5 +14,8 @@ def quizes(request,slug):
 def quiz(request,url,slug):
     quiz=Quiz.objects.get(url=url)
     questions=Question.objects.filter(quiz_id=quiz.id)
-    op
-    return render(request,'category/quiz.html',context={'quiz':quiz,'questions':questions})
+    options=[]
+    for q in questions:
+        op=Answer.objects.filter(question_id=q.id)
+        options.append(op)
+    return render(request,'category/quiz.html',context={'quiz':quiz,'questions':questions,'options':options})

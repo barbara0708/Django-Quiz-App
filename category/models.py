@@ -28,7 +28,7 @@ class Scores(models.Model):
 
 
 class Answer(models.Model):
-    question=models.OneToOneField(Question,on_delete=models.CASCADE,blank=True,null=True)
+    question=models.ForeignKey(Question,on_delete=models.CASCADE,blank=True,null=True)
     content=models.CharField(max_length=200,blank=True,null=True)
     correct=models.BooleanField(default=False,blank=True,null=True)
     def __str__(self):
