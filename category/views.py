@@ -17,4 +17,7 @@ def quiz(request,url,slug):
     for q in questions:
         op=Answer.objects.filter(question=q.id)
         options.append(list(op))
+    maxPage=len(list(questions))
+    current=0
+    print(maxPage)
     return render(request,'category/quiz.html',context={'quiz':quiz,'questions':questions,'options':options})

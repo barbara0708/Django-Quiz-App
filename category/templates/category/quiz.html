@@ -3,21 +3,29 @@
 {% block title %}Quiz{% endblock %}
 
 {% block content %}
-{% for question in questions %}
-    {% for op in options %}
 
-
-<div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
-    <div class="card-header">{{question.content}}</div>
-    <div class="card-body">
-        {% for option in op %}
-      <h5 class="card-title">{{option.content}}</h5>
-      {% endfor %}
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+<div class="row" style="max-height: 100px;">
+  <div class="col-6" style="max-height: 100px;">
+    {% for question in questions %}
+    <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+      <div class="card-header">{{question.content}}</div>
+      <div class="card-body">
+        
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
     </div>
+    {% endfor %}
   </div>
 
-
+  <div class="col-6" style="max-height: 100px;">
+    {% for op in options %}   
+    {% for option in op %}
+    <h5 class="card-title">{{option.content}}</h5>
     {% endfor %}
-  {% endfor %}
+    {% endfor %}
+  </div>
+</div>
+  <div>
+  </div>
+    
   {% endblock %}
