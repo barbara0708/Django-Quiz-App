@@ -3,7 +3,6 @@ from .models import Quiz, Question, Answer
 from core.models import Categories
 from django.contrib.auth.decorators import login_required
 
-# Create your views here.
 @login_required
 def quizes(request,slug):
     cID=Categories.objects.get(slug=slug)
@@ -16,6 +15,6 @@ def quiz(request,url,slug):
     questions=Question.objects.filter(quiz_id=quiz.id)
     options=[]
     for q in questions:
-        op=Answer.objects.filter(question_id=q.id)
-        options.append(op)
+        op=Answer.objects.filter(question=q.id)
+        options.append(list(op))
     return render(request,'category/quiz.html',context={'quiz':quiz,'questions':questions,'options':options})
