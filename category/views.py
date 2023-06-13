@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Quiz
+from .models import Quiz, Question, Answer
 from core.models import Categories
 from django.contrib.auth.decorators import login_required
 
@@ -13,4 +13,6 @@ def quizes(request,slug):
 @login_required
 def quiz(request,url,slug):
     quiz=Quiz.objects.get(url=url)
-    return render(request,'category/quiz.html',context={'quiz':quiz})
+    questions=Question.objects.filter(quiz_id=quiz.id)
+    op
+    return render(request,'category/quiz.html',context={'quiz':quiz,'questions':questions})
