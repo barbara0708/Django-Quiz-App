@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Quiz, Question, Answer
 from core.models import Categories
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 @login_required
 def quizes(request,slug):
@@ -11,16 +12,11 @@ def quizes(request,slug):
 
 @login_required
 def quiz(request,url,slug):
-    if request.method=='POST':
-        pass
-    else:
-        quiz=Quiz.objects.get(url=url)
-        questions=Question.objects.filter(quiz_id=quiz.id)
-        options=[]
-        for q in questions:
-            op=Answer.objects.filter(question=q.id)
-            options.append(list(op))
-        maxPage=len(list(questions))
-        current=0
-        print(maxPage)
-    return render(request,'category/quiz.html',context={'quiz':quiz,'questions':questions,'options':options})
+    quiz=Quiz.objects.get(url=url)
+    questions=Question.objects.filter(quiz_id=quiz.id)
+    paginator=Paginator(questions,1)
+  
+    page_number=request.GET.get('page')
+    question=paginator.get_page(page_number)
+    print(question)
+    return render(request,'category/quiz.html',context={'quiz':quiz,'page_obj':question})

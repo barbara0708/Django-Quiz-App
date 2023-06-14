@@ -4,37 +4,35 @@
 
 {% block content %}
 
-<section style="display: flex; justify-content: center; ">
-<div class="row" style="margin: auto;">
-  <div class="col-6">
-    {% for question in questions %}
-    <div class="card text-white bg-warning mb-3" style="max-width: 18rem; height: 200px;">
-      <div class="card-header">{{question.content}}</div>
-      <div class="card-body">
-        
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
+<section style="display: flex; justify-content: center; margin-top: 3%; ">
+  <form method="POST">
+        <!-- {% for question in questions %} -->
+        <div class="card text-white bg-warning mb-3" style="max-width: 40rem; height: 200px;">
+          <div class="card-header">{{page_obj.content}}</div>
+            <div class="card-body">
+            <p class="card-text"></p>
+            </div>
+          </div>
+        <!-- {% endfor %} -->
+<button type="submit" class="btn btn-info btn-lg btn-block" style="max-width: 80%; margin: auto;">Block level button</button>
 
-  <div class="col-6">
-    {% for op in options %}   
-    
-    <div class="card text-white bg-warning mb-3" style="max-width: 18rem; height: 200px;">
-      <div class="card-body">
-        {% for option in op %}
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
-          <label class="form-check-label" for="flexRadioDefault1">{{option.content}}</label>
-        </div>
-        {% endfor %}
-        </div>
-    </div>
-    {% endfor %}
-  </div>
-</div>
-  <div>
+</form>
+<div class="pagination">
+  <span class="step-links">
+      {% if page_obj.has_previous %}
+          <a href="?page=1">&laquo; first</a>
+          <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+      {% endif %}
+
+      <span class="current">
+          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+      </span>
+
+      {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}">next</a>
+          <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+      {% endif %}
+  </span>
 </div>
 </section>
   {% endblock %}
