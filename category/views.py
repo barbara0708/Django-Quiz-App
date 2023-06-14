@@ -11,13 +11,16 @@ def quizes(request,slug):
 
 @login_required
 def quiz(request,url,slug):
-    quiz=Quiz.objects.get(url=url)
-    questions=Question.objects.filter(quiz_id=quiz.id)
-    options=[]
-    for q in questions:
-        op=Answer.objects.filter(question=q.id)
-        options.append(list(op))
-    maxPage=len(list(questions))
-    current=0
-    print(maxPage)
+    if request.method=='POST':
+        pass
+    else:
+        quiz=Quiz.objects.get(url=url)
+        questions=Question.objects.filter(quiz_id=quiz.id)
+        options=[]
+        for q in questions:
+            op=Answer.objects.filter(question=q.id)
+            options.append(list(op))
+        maxPage=len(list(questions))
+        current=0
+        print(maxPage)
     return render(request,'category/quiz.html',context={'quiz':quiz,'questions':questions,'options':options})
