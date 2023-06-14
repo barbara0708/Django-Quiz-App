@@ -14,9 +14,11 @@ def quizes(request,slug):
 def quiz(request,url,slug):
     quiz=Quiz.objects.get(url=url)
     questions=Question.objects.filter(quiz_id=quiz.id)
+    options=Answer.objects.all()
     paginator=Paginator(questions,1)
+    paginator2=Paginator(options,4)
   
     page_number=request.GET.get('page')
     question=paginator.get_page(page_number)
-    print(question)
-    return render(request,'category/quiz.html',context={'quiz':quiz,'page_obj':question})
+    op=paginator2.get_page(page_number)
+    return render(request,'category/quiz.html',context={'quiz':quiz,'page_obj':question,'options':op})
