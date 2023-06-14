@@ -17,8 +17,11 @@ def quiz(request,url,slug):
     options=Answer.objects.all()
     paginator=Paginator(questions,1)
     paginator2=Paginator(options,4)
-  
     page_number=request.GET.get('page')
     question=paginator.get_page(page_number)
     op=paginator2.get_page(page_number)
+    if request.method=='POST':
+        correct_user_answers=[]
+        user_answer=request.POST['option']
+        
     return render(request,'category/quiz.html',context={'quiz':quiz,'page_obj':question,'options':op})
