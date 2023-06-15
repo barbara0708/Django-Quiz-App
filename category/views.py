@@ -20,8 +20,19 @@ def quiz(request,url,slug):
     page_number=request.GET.get('page')
     question=paginator.get_page(page_number)
     op=paginator2.get_page(page_number)
+    context={'quiz':quiz,'page_obj':question,'options':op}
+
     if request.method=='POST':
         correct_user_answers=[]
         user_answer=request.POST['option']
-        
-    return render(request,'category/quiz.html',context={'quiz':quiz,'page_obj':question,'options':op})
+        correct_answers=Answer.objects.filter(correct=True)
+        if user_answer in correct_answers:
+            correct_user_answers.append(user_answer)
+        print(correct_user_answers)
+        return render(request,'category/quiz.html',context)
+    
+    if request.method=='GET':
+        request.session['previous_page'] = request.path_info + "?page=" + request.GET.get("page", '1')
+        return render(request,'category/quiz.html',context)
+
+    
