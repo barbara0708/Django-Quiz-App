@@ -24,6 +24,10 @@ def quiz(request,url,slug):
     op=paginator2.get_page(page_number)
     context={'quiz':quiz,'page_obj':question,'options':op}
 
+    if request.method=='GET':
+        request.session['previous_page'] = request.path_info + "?page=" + request.GET.get("page", '1')
+        return render(request,'category/quiz.html',context)
+
     if request.method=='POST':
         correct_user_answers=[]
         user_answer=request.POST['option']
@@ -34,12 +38,9 @@ def quiz(request,url,slug):
                 messages.success(request, 'Correct answer')
             return HttpResponseRedirect(request.session['previous_page'])
         else:
-            messages.warning(request, f'Wrong answer, Correct Answer is {correct_answer}')
+            messages.warning(request, f'Wrong answer, Correct Answer is {correct.content}')
             return HttpResponseRedirect(request.session['previous_page'])
-        return render(request,'category/quiz.html',context)
+        #return render(request,'category/quiz.html',context)
     
-    if request.method=='GET':
-        request.session['previous_page'] = request.path_info + "?page=" + request.GET.get("page", '1')
-        return render(request,'category/quiz.html',context)
-
+    
     
