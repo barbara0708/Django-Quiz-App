@@ -24,8 +24,10 @@ def quiz(request,url,slug):
     op=paginator2.get_page(page_number)
     correct_user_answers=[]
     context={'quiz':quiz,'page_obj':question,'options':op}
+    count=0
 
     if request.method=='GET':
+        print("get request: ")
         request.session['previous_page'] = request.path_info + "?page=" + request.GET.get("page", '1')
         return render(request,'category/quiz.html',context)
 
