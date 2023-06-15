@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Quiz, Question, Answer
 from core.models import Categories
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from django.contrib import messages
-from django.http import HttpResponse, HttpResponseRedirect
+import json
+
 
 @login_required
 def quizes(request,slug):
@@ -31,18 +31,18 @@ def quiz(request,url,slug):
         request.session['previous_page'] = request.path_info + "?page=" + request.GET.get("page", '1')
         return render(request,'category/quiz.html',context)
 
-    if request.method=='POST':
-        user_answer=request.POST['option']
-        correct_answers=Answer.objects.filter(correct=True)
-        for correct in correct_answers:
-            if user_answer == correct.content:
-                correct_user_answers.append(user_answer)
-                messages.success(request, 'Correct answer')
-                page=request.POST.get('current_page')
-                print(page)
-                return HttpResponseRedirect("?page="+ str(int(page)+1))
-            else:
-                messages.warning(request, f'Wrong answer, Correct Answer is {correct.content}')
-                return HttpResponseRedirect(request.session['previous_page'])
-    
+    # if request.method=='POST':
+    #     parse_json = json.loads(request.body)
+    #     for k,v in parse_json.items():
+    #         ques = QuesModel.objects.get(id=int(k))
+    #         answer = v
+    #         obj, created = Answer.objects.update_or_create(
+    #                 ques=ques, answer=answer,  
+    #         defaults={'answer': answer, 'examdate': default_date, 'fname': "Bhavesh", "lname": "Patil"})
+
+    #     return redirect('get-results')
+
+def result(request,url,slug):
+    return render(request,'category/results.html')
+
     
