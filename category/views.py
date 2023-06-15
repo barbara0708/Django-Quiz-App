@@ -36,8 +36,9 @@ def quiz(request,url,slug):
             if user_answer == correct.content:
                 correct_user_answers.append(user_answer)
                 messages.success(request, 'Correct answer')
-                print(request.session['previous_page'])
-                return HttpResponseRedirect(request.session['previous_page'])
+                page=request.POST.get('current_page')
+                print(page)
+                return HttpResponseRedirect("?page="+ str(int(page)+1))
             else:
                 messages.warning(request, f'Wrong answer, Correct Answer is {correct.content}')
                 return HttpResponseRedirect(request.session['previous_page'])
