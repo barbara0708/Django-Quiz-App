@@ -30,19 +30,15 @@ def quiz(request,url,slug):
         return render(request,'category/quiz.html',context)
 
     if request.method=='POST':
-        
         user_answer=request.POST['option']
         correct_answers=Answer.objects.filter(correct=True)
         for correct in correct_answers:
             if user_answer == correct.content:
                 correct_user_answers.append(user_answer)
                 messages.success(request, 'Correct answer')
-                print(correct_user_answers)
-            return HttpResponseRedirect("?page="+request.session['previous_page'])
-        else:
-            messages.warning(request, f'Wrong answer, Correct Answer is {correct.content}')
-            return HttpResponseRedirect(request.session['previous_page'])
-        #return render(request,'category/quiz.html',context)
-    
+                return HttpResponseRedirect(request.session['previous_page'])
+            else:
+                messages.warning(request, f'Wrong answer, Correct Answer is {correct_answer}')
+                return HttpResponseRedirect(request.session['previous_page'])
     
     

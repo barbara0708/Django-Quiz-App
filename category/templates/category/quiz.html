@@ -24,8 +24,8 @@
           </div>
         {% endfor %} 
 <button type="submit" class="btn btn-info btn-lg btn-block text-white" style="max-width: 80%; margin: auto;">Block level button</button>
-
 </form>
+<br>
 <div class="pagination">
   <span class="step-links">
       {% if page_obj.has_previous %}
@@ -43,5 +43,6 @@
       {% endif %}
   </span>
 </div>
+
 </section>
   {% endblock %}
