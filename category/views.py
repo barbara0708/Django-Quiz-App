@@ -3,6 +3,8 @@ from .models import Quiz, Question, Answer
 from core.models import Categories
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.contrib import messages
+from django.http import HttpResponse, HttpResponseRedirect
 
 @login_required
 def quizes(request,slug):
@@ -26,9 +28,14 @@ def quiz(request,url,slug):
         correct_user_answers=[]
         user_answer=request.POST['option']
         correct_answers=Answer.objects.filter(correct=True)
-        if user_answer in correct_answers:
-            correct_user_answers.append(user_answer)
-        print(correct_user_answers)
+        for correct in correct_answers:
+            if user_answer == correct.content:
+                correct_user_answers.append(user_answer)
+                messages.success(request, 'Correct answer')
+            return HttpResponseRedirect(request.session['previous_page'])
+        else:
+            messages.warning(request, f'Wrong answer, Correct Answer is {correct_answer}')
+            return HttpResponseRedirect(request.session['previous_page'])
         return render(request,'category/quiz.html',context)
     
     if request.method=='GET':

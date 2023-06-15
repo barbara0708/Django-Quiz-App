@@ -6,6 +6,7 @@
 
 <section style="display: flex; justify-content: center; margin-top: 3%; ">
   <form method="POST">
+    {% csrf_token %}
         {% for question in page_obj %} 
         <div class="card text-white bg-warning mb-3" style="max-width: 40rem; height: 200px;">
           <div class="card-header">{{question.content}}</div>
@@ -13,7 +14,7 @@
             <p class="card-text">
               {% for op in options %}
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="option" id="option_three" value="{{question.option_three}}">
+                <input class="form-check-input" type="radio" name="option" id="option_three" value="{{op.content}}">
                   {{op.content}}
                 </label>
               </div>              
