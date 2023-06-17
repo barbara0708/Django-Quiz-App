@@ -31,17 +31,18 @@ def quiz(request,url,slug):
         request.session['previous_page'] = request.path_info + "?page=" + request.GET.get("page", '1')
         return render(request,'category/quiz.html',context)
 
-    # if request.method=='POST':
-    #     parse_json = json.loads(request.body)
-    #     for k,v in parse_json.items():
-    #         ques = QuesModel.objects.get(id=int(k))
-    #         answer = v
-    #         obj, created = Answer.objects.update_or_create(
-    #                 ques=ques, answer=answer,  
-    #         defaults={'answer': answer, 'examdate': default_date, 'fname': "Bhavesh", "lname": "Patil"})
+    if request.method=='POST':
+        parse_json = json.loads(request.body)
+        for k,v in parse_json.items():
+            ques = QuesModel.objects.get(id=int(k))
+            answer = v
+            obj, created = Answer.objects.update_or_create(
+                    ques=ques, answer=answer,  
+            defaults={'answer': answer, 'examdate': default_date, 'fname': "Bhavesh", "lname": "Patil"})
 
-    #     return redirect('get-results')
+        return redirect('result')
 
+@login_required
 def result(request,url,slug):
     return render(request,'category/results.html')
 
