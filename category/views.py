@@ -32,8 +32,9 @@ def quiz(request,url,slug):
         return render(request,'category/quiz.html',context)
 
     if request.method=='POST':
-        parse_json = json.loads(request.body)
-        print(parse_json)
+        print(request.body)
+        #parse_json = json.loads(request.body)
+        #print(parse_json.items())
         # for k,v in parse_json.items():
         #     ques = QuesModel.objects.get(id=int(k))
         #     answer = v
