@@ -33,12 +33,13 @@ def quiz(request,url,slug):
 
     if request.method=='POST':
         parse_json = json.loads(request.body)
-        for k,v in parse_json.items():
-            ques = QuesModel.objects.get(id=int(k))
-            answer = v
-            obj, created = Answer.objects.update_or_create(
-                    ques=ques, answer=answer,  
-            defaults={'answer': answer, 'examdate': default_date, 'fname': "Bhavesh", "lname": "Patil"})
+        print(parse_json)
+        # for k,v in parse_json.items():
+        #     ques = QuesModel.objects.get(id=int(k))
+        #     answer = v
+        #     obj, created = Answer.objects.update_or_create(
+        #             ques=ques, answer=answer,  
+        #     defaults={'answer': answer, 'examdate': default_date, 'fname': "Bhavesh", "lname": "Patil"})
 
         return redirect('result')
 
