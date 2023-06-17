@@ -13,6 +13,10 @@ def quizes(request,slug):
     return render(request,'category/quizes.html',context={'quizzes':all_quizes})
 
 @login_required
+def result(request):
+    return render(request,'category/results.html')
+
+@login_required
 def quiz(request,url,slug):
     quiz=Quiz.objects.get(url=url)
     questions=Question.objects.filter(quiz_id=quiz.id)
@@ -44,8 +48,6 @@ def quiz(request,url,slug):
 
         return redirect('result')
 
-@login_required
-def result(request):
-    return render(request,'category/results.html')
+
 
     
