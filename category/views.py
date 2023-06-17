@@ -45,7 +45,7 @@ def quiz(request,url,slug):
         return redirect('result')
 
 @login_required
-def result(request,url,slug):
+def result(request):
     return render(request,'category/results.html')
 
     
