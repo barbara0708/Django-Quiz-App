@@ -3,7 +3,6 @@ from .models import Quiz, Question, Answer
 from core.models import Categories
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-import json
 
 
 @login_required
@@ -13,7 +12,7 @@ def quizes(request,slug):
     return render(request,'category/quizes.html',context={'quizzes':all_quizes})
 
 @login_required
-def result(request):
+def result(request,slug):
     return render(request,'category/results.html')
 
 @login_required
