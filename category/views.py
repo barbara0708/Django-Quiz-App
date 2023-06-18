@@ -12,7 +12,7 @@ def quizes(request,slug):
     return render(request,'category/quizes.html',context={'quizzes':all_quizes})
 
 @login_required
-def result(request,slug):
+def result(request):
     return render(request,'category/results.html')
 
 @login_required
