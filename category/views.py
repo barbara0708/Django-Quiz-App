@@ -30,12 +30,11 @@ def quiz(request,url,slug):
     count=0
 
     if request.method=='GET':
-        print("get request: ")
         request.session['previous_page'] = request.path_info + "?page=" + request.GET.get("page", '1')
         return render(request,'category/quiz.html',context)
 
     if request.method=='POST':
-        print(request.body)
+        print("reques body: ",request.body)
         #parse_json = json.loads(request.body)
         #print(parse_json.items())
         # for k,v in parse_json.items():
@@ -45,7 +44,7 @@ def quiz(request,url,slug):
         #             ques=ques, answer=answer,  
         #     defaults={'answer': answer, 'examdate': default_date, 'fname': "Bhavesh", "lname": "Patil"})
 
-        return redirect('result')
+        return redirect('/categories/category/music/result')
 
 
 
