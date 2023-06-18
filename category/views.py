@@ -35,7 +35,8 @@ def quiz(request,url,slug):
 
     if request.method=='POST':
         body_unicode=request.body.decode('utf-8')
-        body=json.loads(body_unicode)
+        body=json.loads(request.body)
+        print("I AM HERE")
         print("reques body: ",body)
         #parse_json = json.loads(request.body)
         #print(parse_json.items())
