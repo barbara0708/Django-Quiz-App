@@ -46,7 +46,7 @@ def quiz(request,url,slug):
         #             ques=ques, answer=answer,  
         #     defaults={'answer': answer, 'examdate': default_date, 'fname': "Bhavesh", "lname": "Patil"})
 
-        return redirect('/categories/category/music/result')
+        return render(request,'category/results.html')
 
 
 
