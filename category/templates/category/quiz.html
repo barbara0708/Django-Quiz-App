@@ -3,7 +3,6 @@
 {% block title %}Quiz{% endblock %}
 
 {% block content %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <section style="display: flex; justify-content: center; margin-top: 3%; ">
   <form>
         {% for question in page_obj %} 
@@ -106,9 +105,11 @@
 }
     // this function will send user result to server and redirect to result page
     function submitResult(){
+        /*const csrftoken=
         fetch(getCurrentURL(), {
         method: "POST",
         body: JSON.stringify(sessionStorage),
+        X-CSRFToken:csrftoken,
         headers: {
             "Content-type": "text/html; charset=UTF-8"
         }
@@ -116,11 +117,9 @@
             console.log(sessionStorage)
             //window.location.replace("{% url 'result' %}");
             sessionStorage.clear();
-        });
+        });*/
+        console.log(sessionStorage.getItem('3'))
     }
 
 </script>
-
-<py-script>print('Hello World')</py-script>
-
 {% endblock %}
