@@ -45,21 +45,7 @@
                     </ul>
                 </nav>
             </div>
-            
-            {% block script %}
-                <script>            
-                    const timer=document.getElementById('displaytimer')
-                    console.log(timer.textContent)
-                    const inputtag = document.getElementById('timer') 
-                    t=0
-                    setInterval(()=>{
-                        t+=1
-                        timer.innerHTML ="<b>Timer: " +t+" seconds</b>"
-                        inputtag.value = t
-                    },1000)
-                </script>
-                
-            {% endblock script %}   
+           
         </div>
       </section>
 
@@ -85,13 +71,13 @@
 <script>
     // this script will keep track of user activity i.e retrive user answers from session storage. ie if you move to previous or next page user's choosed answers will be displayed.
     $(window).on('load', function(){
-        console.log(sessionStorage)
+        //console.log(sessionStorage)
         var questionID = document.getElementById('questionID').value
         var arrayElements = document.getElementsByClassName('form-check-input')
         if (sessionStorage.length){
             var value = sessionStorage.getItem(questionID)
             const ele = Array.prototype.filter.call(arrayElements, (ele) => ele.value == value)
-            console.log(ele)
+            //console.log(ele)
             if (ele.length > 0){
                 ele[0].checked = true;
             }
