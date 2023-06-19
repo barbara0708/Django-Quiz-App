@@ -4,9 +4,9 @@
 
 {% block content %}
 <section style="display: flex; justify-content: center; margin-top: 3%; ">
-  <form>
-    {% csrf_token %}
-        {% for question in page_obj %} 
+    {% for question in page_obj %}  
+    <form>
+    {% csrf_token %}     
         <input type="hidden" name="question_id" value="{{ question.id }}" id="questionID">
         <div class="card text-white bg-warning mb-3" style="max-width: 100rem; height: 200px;">
           <div class="card-header">{{question.content}}</div>
@@ -88,20 +88,18 @@
 }
     // this function will send user result to server and redirect to result page
     function submitResult(){
-        /*const csrftoken=
         fetch(getCurrentURL(), {
         method: "POST",
         body: JSON.stringify(sessionStorage),
-        X-CSRFToken:csrftoken,
         headers: {
             "Content-type": "text/html; charset=UTF-8"
         }
         }).then((response) => {
-            console.log(sessionStorage)
+            console.log("first "+sessionStorage)
             //window.location.replace("{% url 'result' %}");
             sessionStorage.clear();
-        });*/
-        console.log(JSON.stringify(sessionStorage))
+        });
+        console.log("second "+JSON.stringify(sessionStorage))
     }
 
 </script>
