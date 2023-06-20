@@ -83,32 +83,33 @@
 </script>
 
 <script>
-    function getCookie(name) {
-  if (!document.cookie) {
-    return null;
+    import jQuery from 'jquery';
+   function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+    let cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      let cookie = jQuery.trim(cookies[i]);
+      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+      }
+    }
   }
-
-  const xsrfCookies = document.cookie.split(';')
-    .map(c => c.trim())
-    .filter(c => c.startsWith(name + '='));
-
-  if (xsrfCookies.length === 0) {
-    return null;
-  }
-  return decodeURIComponent(xsrfCookies[0].split('=')[1]);
+  return cookieValue;
 }
     function getCurrentURL () {
   return window.location.href
 }
     // this function will send user result to server and redirect to result page
     function submitResult(){
-        const csrfToken = getCookie('CSRF-TOKEN');
+        var csrftoken = getCookie('csrftoken');
         fetch(getCurrentURL(), {
         method: "POST",
         body: JSON.stringify(sessionStorage),
         headers: {
             "Content-type": "text/html; charset=UTF-8",
-            "X-CSRF-TOKEN":csrfToken
+            "X-CSRFToken":csrfToken
         }
         }).then((response) => {
             console.log("first "+sessionStorage)
