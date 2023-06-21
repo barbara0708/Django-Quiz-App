@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'crispy_bootstrap5'
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -60,6 +59,8 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'quizes.urls'
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+SESSION_COOKIE_HTTPONLY=False
+
 
 TEMPLATES = [
     {

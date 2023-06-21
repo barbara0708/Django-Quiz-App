@@ -3,6 +3,7 @@
 {% block title %}Quiz{% endblock %}
 
 {% block content %}
+
 <section style="max-height: 50%; margin: auto; max-width:50%; display: flex; flex-direction: column; flex-wrap: wrap; justify-content: center;  margin-top: 3%; ">
     {% for question in page_obj %}  
     <form method="POST" style="display: flex; flex-direction: column;">
@@ -27,7 +28,7 @@
 <button type="submit"  onclick="submitResult()" class="btn btn-info btn-lg btn-block text-white" style="max-width: 80%; margin: auto;">Block level button</button>
 </form>
 <br>
-<div class="container" style=" background-color: black;">
+<div class="container" >
                 <nav aria-label="Page navigation example" style="width: 45%; margin: auto;">
                     <ul class="pagination">
                         {% if page_obj.has_previous %}
@@ -101,6 +102,7 @@
     // this function will send user result to server and redirect to result page
     function submitResult(){
         var csrftoken = getCookie('csrftoken');
+        
         fetch(getCurrentURL(), {
         method: "POST",
         body: JSON.stringify(sessionStorage),
