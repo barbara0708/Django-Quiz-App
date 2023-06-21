@@ -56,14 +56,13 @@
 
 
 <script>
+    var answers=[]
     function submitValue(ele){
         var questionID = document.getElementById('questionID').value
         var answer = ele.value
+        answers.push(answer)
         sessionStorage.setItem(questionID, answer);
     }
-</script>
-
-<script>
     // this script will keep track of user activity i.e retrive user answers from session storage. ie if you move to previous or next page user's choosed answers will be displayed.
     $(window).on('load', function(){
         //console.log(sessionStorage)
@@ -105,7 +104,7 @@
         
         fetch(getCurrentURL(), {
         method: "POST",
-        body: JSON.stringify(sessionStorage),
+        body: "hello",
         headers: {
             "Content-type": "text/html; charset=UTF-8",
             "X-CSRFToken":csrfToken
