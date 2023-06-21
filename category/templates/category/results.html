@@ -4,8 +4,13 @@
 
 {% block content %}
 
-<div class="container mt-0" style="display: flex; flex-direction: column; flex-wrap: wrap; margin: auto; width: 40%;" >
+<div class="container " style="display: flex; flex-direction: column; flex-wrap: wrap; margin: auto; width: 40%;" >
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-<lottie-player src="https://assets10.lottiefiles.com/packages/lf20_ZmsQVB.json"  background="transparent"  speed="1"  style="width: 500px; height: 500px;"  loop autoplay></lottie-player>
+<lottie-player src="https://assets10.lottiefiles.com/packages/lf20_ZmsQVB.json"  background="transparent"  speed="1"  style="width: 550px; height: 400px;"  loop autoplay></lottie-player>
+    <div class="info container" style="display: flex; flex-direction: column; max-width: 50%; font-size: 120%;">
+    <p>You have <span style="color: green;">5</span> correct answers.</p>
+    <p>You have <span style="color: red;">6</span> wrong answers.</p>
+    <p>Your total score is : 30</p>
+</div>
 </div>
 {% endblock %}
