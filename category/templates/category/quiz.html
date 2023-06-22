@@ -6,7 +6,7 @@
 
 <section style="max-height: 50%; margin: auto; max-width:50%; display: flex; flex-direction: column; flex-wrap: wrap; justify-content: center;  margin-top: 3%; ">
     {% for question in page_obj %}  
-    <form method="POST" style="display: flex; flex-direction: column;">
+    <form id="takeQuiz" style="display: flex; flex-direction: column;">
     {% csrf_token %}     
         <input type="hidden" name="question_id" value="{{ question.id }}" id="questionID">
         <div class="card text-white bg-warning mb-3" style="max-width: 100rem; height: 200px;">
@@ -115,6 +115,11 @@
   }
 });
     }
+    const takeQuiz=document.getElementById('takeQuiz')
+    takeQuiz.addEventListener("submit",(e)=>{
+      e.preventDefault()
+      submitResult()
+    })
 
 </script>
 {% endblock %}

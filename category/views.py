@@ -35,11 +35,11 @@ def quiz(request,url,slug):
 
     if request.method=='POST':
         is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
+        print(request.headers)
 
-        if is_ajax:
-            data = json.load(request)
-            todo = data.get('payload')
-            print(todo)
+        data = json.load(request)
+        todo = data.get('payload')
+        print(todo)
           #parse_json = json.loads(request.body)
         #print(parse_json.items())
         # for k,v in parse_json.items():
