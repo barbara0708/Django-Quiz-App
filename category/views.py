@@ -35,11 +35,15 @@ def quiz(request,url,slug):
 
     if request.method=='POST':
         print("Here")
+        total=0
         is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
         if is_ajax:
             data = json.load(request)
             for k,v in data.items():
-                print(k," - ",v)
+                answ=Answer.objects.get(content=v,question__id=k)
+                if answ.correct:
+                    total+=1
+        print("Total score: ",total)
         #     ques = QuesModel.objects.get(id=int(k))
         #     answer = v
         #     obj, created = Answer.objects.update_or_create(
