@@ -34,6 +34,7 @@ def quiz(request,url,slug):
         return render(request,'category/quiz.html',context)
 
     if request.method=='POST':
+        print("Here")
         is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
         print(request.headers)
 

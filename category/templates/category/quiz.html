@@ -95,26 +95,18 @@
   }
   return cookieValue;
 }
- const url="{% url 'result' %}";
-    // this function will send user result to server and redirect to result page
+    const url="{% url 'result' %}";
     function submitResult(){
-      $.ajax({
-  url: url,
-  type: "POST",
-  dataType: "json",
-  data: JSON.stringify({payload: "payload",}),
-  headers: {
-    "X-Requested-With": "XMLHttpRequest",
-    "X-CSRFToken": getCookie("csrftoken"),  // don't forget to include the 'getCookie' function
-  },
-  success: (data) => {
-    console.log(data);
-  },
-  error: (error) => {
-    console.log(error);
-  }
-});
-    }
+      fetch(url,{
+      method: "POST",
+      dataType: "json",
+      body: JSON.stringify({payload: "payload",}),
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+        "X-CSRFToken": getCookie("csrftoken"),  
+      }
+}).then(response=>console.log(response.json()));}
+
     const takeQuiz=document.getElementById('takeQuiz')
     takeQuiz.addEventListener("submit",(e)=>{
       e.preventDefault()
