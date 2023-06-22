@@ -25,18 +25,16 @@ def quiz(request,url,slug):
     page_number=request.GET.get('page')
     question=paginator.get_page(page_number)
     op=paginator2.get_page(page_number)
-    correct_user_answers=[]
     context={'quiz':quiz,'page_obj':question,'options':op}
-    count=0
 
     if request.method=='GET':
         request.session['previous_page'] = request.path_info + "?page=" + request.GET.get("page", '1')
         return render(request,'category/quiz.html',context)
 
     if request.method=='POST':
-        print("Here")
         total_score=0
         right=0
+        length=int(question.paginator.count)
         answers={}
         is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
         if is_ajax:
@@ -47,11 +45,11 @@ def quiz(request,url,slug):
                 answ=Answer.objects.get(content=v,question__id=k)
                 if answ.correct:
                     right+=1
-        wrong=len(answers)-right
-        total_score=(right/len(answers))*100
-        context={'total_score':total_score,'answers':answers,'right':right,'wrong':wrong}  
+        wrong=length-right
+        total_score=(right/length)*100
+        context2={'total_score':total_score,'answers':answers,'right':right,'wrong':wrong}  
         print("total score is : ",total_score)          
-        return render(request,'category/results.html',context)
+    return render(request,'category/results.html',context2)
 
 
 
