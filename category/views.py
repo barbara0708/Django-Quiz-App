@@ -35,22 +35,23 @@ def quiz(request,url,slug):
 
     if request.method=='POST':
         print("Here")
-        total=0
+        total_score=0
+        right=0
+        answers={}
         is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
         if is_ajax:
             data = json.load(request)
             for k,v in data.items():
+                if k not in answers.keys():
+                    answers[k]=v
                 answ=Answer.objects.get(content=v,question__id=k)
                 if answ.correct:
-                    total+=1
-        print("Total score: ",total)
-        #     ques = QuesModel.objects.get(id=int(k))
-        #     answer = v
-        #     obj, created = Answer.objects.update_or_create(
-        #             ques=ques, answer=answer,  
-        #     defaults={'answer': answer, 'examdate': default_date, 'fname': "Bhavesh", "lname": "Patil"})
-
-        return render(request,'category/results.html')
+                    right+=1
+        wrong=len(answers)-right
+        total_score=(right/len(answers))*100
+        context={'total_score':total_score,'answers':answers,'right':right,'wrong':wrong}  
+        print("total score is : ",total_score)          
+        return render(request,'category/results.html',context)
 
 
 
