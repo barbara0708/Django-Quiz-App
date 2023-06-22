@@ -97,15 +97,15 @@
 }
     const url="{% url 'result' %}";
     function submitResult(){
-      fetch(url,{
+      fetch("",{
       method: "POST",
       dataType: "json",
-      body: JSON.stringify({payload: "payload",}),
+      body: JSON.stringify(sessionStorage),
       headers: {
         "X-Requested-With": "XMLHttpRequest",
         "X-CSRFToken": getCookie("csrftoken"),  
       }
-}).then(response=>console.log(response.json()));}
+}).then(response=>console.log(response));}
 
     const takeQuiz=document.getElementById('takeQuiz')
     takeQuiz.addEventListener("submit",(e)=>{

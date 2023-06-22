@@ -36,14 +36,10 @@ def quiz(request,url,slug):
     if request.method=='POST':
         print("Here")
         is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
-        print(request.headers)
-
-        data = json.load(request)
-        todo = data.get('payload')
-        print(todo)
-          #parse_json = json.loads(request.body)
-        #print(parse_json.items())
-        # for k,v in parse_json.items():
+        if is_ajax:
+            data = json.load(request)
+            for k,v in data.items():
+                print(k," - ",v)
         #     ques = QuesModel.objects.get(id=int(k))
         #     answer = v
         #     obj, created = Answer.objects.update_or_create(
