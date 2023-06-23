@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<section style="max-height: 500px; margin: auto; max-width:50%; display: flex; flex-direction: column; flex-wrap: wrap; justify-content: center;  margin-top: 3%; ">
+<section style="margin: auto; max-width:50%; display: flex; flex-direction: column; flex-wrap: wrap; justify-content: center;  margin-top: 3%; ">
     {% for question in page_obj %}  
     <form id="takeQuiz" style="display: flex; flex-direction: column;">
     {% csrf_token %}     
@@ -15,7 +15,7 @@
             <p class="card-text">
               {% for op in options %}
               <div class="form-check" >
-                <input class="form-check-input" data-question-id="{{ op.id }}" onchange="submitValue(this)" type="radio" name="option" id="{{op.id}}" value="{{op.content}}">
+                <input class="form-check-input" data-question-id="{{ op.id }}" onchange="submitValue(this)" type="radio" name="option" id="{{op.id}}" value="{{op.content}}"><label>
                   {{op.content}}
                 </label>
               </div>              
@@ -100,7 +100,10 @@
         "X-Requested-With": "XMLHttpRequest",
         "X-CSRFToken": getCookie("csrftoken"),  
       }
-}).then(response=>console.log(response));}
+}).then(
+    window.location.href=url,
+    document.getElementById("correctAnswers").innerHTML='4'    
+);}
 
     const takeQuiz=document.getElementById('takeQuiz')
     takeQuiz.addEventListener("submit",(e)=>{

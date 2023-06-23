@@ -13,6 +13,7 @@ def quizes(request,slug):
 
 @login_required
 def result(request):
+    print("Finally!")
     return render(request,'category/results.html')
 
 @login_required
@@ -49,7 +50,7 @@ def quiz(request,url,slug):
         total_score=(right/length)*100
         context2={'total_score':total_score,'answers':answers,'right':right,'wrong':wrong}  
         print("total score is : ",total_score)          
-    return render(request,'category/results.html',context2)
+        return render(request,'category/results.html',context2)
 
 
 
