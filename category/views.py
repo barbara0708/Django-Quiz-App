@@ -18,6 +18,7 @@ def result(request):
 
 @login_required
 def quiz(request,url,slug):
+    correct=0
     quiz=Quiz.objects.get(url=url)
     questions=Question.objects.filter(quiz_id=quiz.id)
     options=Answer.objects.all()
@@ -33,8 +34,6 @@ def quiz(request,url,slug):
         return render(request,'category/quiz.html',context)
 
     if request.method=='POST':
-        total_score=0
-        right=0
         length=int(question.paginator.count)
         answers={}
         is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
@@ -45,11 +44,18 @@ def quiz(request,url,slug):
                     answers[k]=v
                 answ=Answer.objects.get(content=v,question__id=k)
                 if answ.correct:
-                    right+=1
-        wrong=length-right
-        total_score=(right/length)*100
-
-        return render(request,'category/result.html',context={'wrong':wrong})
+                    correct+=1
+        wrong=length-correct
+        total_score=(correct/length)*100
+        if total_score>75:
+            passed=True
+        else:
+            passed=False
+        id=request.user.id
+        print("Data to save: ",id," ",quiz.pk," ",total_score," ",wrong," ",correct)
+        score=Scores(id=id,quiz_id=quiz.pk,points=total_score,correct=correct,wrong=wrong,passed=passed)
+        score.save()
+        return render(request,'category/results.html',context={'wrong':wrong})
 
 
 
