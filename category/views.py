@@ -4,6 +4,7 @@ from core.models import Categories
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 import json
+from django import db
 
 @login_required
 def quizes(request,slug):
@@ -28,6 +29,7 @@ def quiz(request,url,slug):
     question=paginator.get_page(page_number)
     op=paginator2.get_page(page_number)
     context={'quiz':quiz,'page_obj':question,'options':op}
+    db.connections.close_all()
 
     if request.method=='GET':
         request.session['previous_page'] = request.path_info + "?page=" + request.GET.get("page", '1')
@@ -51,10 +53,8 @@ def quiz(request,url,slug):
             passed=True
         else:
             passed=False
-        id=request.user.id
         print("Data to save: ",id," ",quiz," ",total_score," ",wrong," ",correct)
-        score=Scores(id=id,quiz_id=quiz,points=total_score,correct=correct,wrong=wrong,passed=passed)
-        score.save()
+        Scores.objects.update_or_create(id=request.user,quiz_id=quiz,points=total_score,correct=correct,wrong=wrong,passed=passed)
         return render(request,'category/results.html',context={'wrong':wrong})
 
 
