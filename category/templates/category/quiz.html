@@ -14,7 +14,7 @@
             <div class="card-body" style="max-height: 300px; padding-bottom: 20px;">
             <p class="card-text">
               {% for op in options %}
-              <div class="form-check" >
+              <div class="form-check" id="option">
                 <input class="form-check-input" data-question-id="{{ op.id }}" onchange="submitValue(this)" type="radio" name="option" id="{{op.id}}" value="{{op.content}}"><label>
                   {{op.content}}
                 </label>
@@ -101,7 +101,8 @@
         "X-CSRFToken": getCookie("csrftoken"),  
       }
 }).then(
-    //window.location.href=url
+      window.location.replace("{% url 'result' %}"),
+      sessionStorage.clear()
 );}
 
     const takeQuiz=document.getElementById('takeQuiz')
