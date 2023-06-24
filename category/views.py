@@ -52,8 +52,8 @@ def quiz(request,url,slug):
         else:
             passed=False
         id=request.user.id
-        print("Data to save: ",id," ",quiz.pk," ",total_score," ",wrong," ",correct)
-        score=Scores(id=id,quiz_id=quiz.pk,points=total_score,correct=correct,wrong=wrong,passed=passed)
+        print("Data to save: ",id," ",quiz," ",total_score," ",wrong," ",correct)
+        score=Scores(id=id,quiz_id=quiz,points=total_score,correct=correct,wrong=wrong,passed=passed)
         score.save()
         return render(request,'category/results.html',context={'wrong':wrong})
 
