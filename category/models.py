@@ -21,6 +21,8 @@ class Scores(models.Model):
     user_id=models.OneToOneField(User,related_name='score',on_delete=models.CASCADE,blank=True,null=True)
     quiz_id=models.OneToOneField(Quiz,related_name='score',on_delete=models.CASCADE,blank=True,null=True)
     points=models.IntegerField(blank=True,null=True)
+    correct=models.IntegerField(blank=True,null=True)
+    wrong=models.IntegerField(blank=True,null=True)
     passed=models.BooleanField(default=False,blank=True,null=True)
     def __str__(self):
         return str(self.points) 
