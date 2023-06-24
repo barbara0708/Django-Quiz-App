@@ -28,8 +28,9 @@ def quiz(request,url,slug):
     page_number=request.GET.get('page')
     question=paginator.get_page(page_number)
     op=paginator2.get_page(page_number)
-    context={'quiz':quiz,'page_obj':question,'options':op}
+    context={'page_obj':question,'options':op}
     db.connections.close_all()
+    
 
     if request.method=='GET':
         request.session['previous_page'] = request.path_info + "?page=" + request.GET.get("page", '1')
@@ -53,8 +54,10 @@ def quiz(request,url,slug):
             passed=True
         else:
             passed=False
-        print("Data to save: ",id," ",quiz," ",total_score," ",wrong," ",correct)
-        Scores.objects.update_or_create(id=request.user,quiz_id=quiz,points=total_score,correct=correct,wrong=wrong,passed=passed)
+        print("Data to save: ",request.user.id," ",quiz," ",total_score," ",wrong," ",correct)
+        Scores.objects.update_or_create(id=int(request.user.id),quiz_id=quiz,points=total_score,correct=correct,wrong=wrong,passed=passed)
+        db.connections.close_all()
+    
         return render(request,'category/results.html',context={'wrong':wrong})
 
 
