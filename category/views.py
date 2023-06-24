@@ -1,11 +1,9 @@
 from django.shortcuts import render,redirect
-from .models import Quiz, Question, Answer
+from .models import Quiz, Question, Answer,Scores
 from core.models import Categories
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 import json
-from django.http import HttpResponse
-from django.template import loader
 
 @login_required
 def quizes(request,slug):
@@ -50,13 +48,8 @@ def quiz(request,url,slug):
                     right+=1
         wrong=length-right
         total_score=(right/length)*100
-        request.session['hello']="hello babe"
-        context2={'total_score':total_score,'answers':answers,'right':right,'wrong':wrong}  
-        temp=loader.get_template('category/results.html')
-        rendered=temp.render(context2)
-        response=HttpResponse(rendered)
-        print("total score is : ",total_score)          
-        return response
+
+        return render(request,'category/result.html',context={'wrong':wrong})
 
 
 
