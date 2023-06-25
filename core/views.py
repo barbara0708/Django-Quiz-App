@@ -67,6 +67,9 @@ def reset_complete(request):
 def reset_confirm(request):
     return render(request,'core/reset_password_confirm.html')
 
+def progress(request):
+    return render(request,'core/progress.html')
+
 # class search_view(ListView):
 #     model = Categories
 #     template_name = 'categories.html'
