@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 import json
 from django import db
+from django.http import HttpResponse
 
 @login_required
 def quizes(request,slug):
@@ -57,7 +58,7 @@ def quiz(request,url,slug):
             passed=False
         Scores.objects.update_or_create(user_id=request.user,quiz_id=quiz,points=total_score,correct=correct,wrong=wrong,passed=passed)
         db.connections.close_all()
-        return render(request,'category/results.html')
+        return HttpResponse("<p>Page was not found</p>")
 
 
 
