@@ -16,8 +16,12 @@ def quizes(request,slug):
 @login_required
 def result(request):
     user_id=request.user.id
-    score=Scores.objects.get(user_id=user_id)
-    return render(request,'category/results.html',context={'score':score})
+    if request.method=='POST':
+        Scores.objects.get(user_id=user_id).delete()
+        return redirect('quiz')
+    if request.method=='GET':
+        score=Scores.objects.get(user_id=user_id)
+        return render(request,'category/results.html',context={'score':score})
 
 @login_required
 def quiz(request,url,slug):
