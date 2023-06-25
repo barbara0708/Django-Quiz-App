@@ -8,9 +8,9 @@
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_ZmsQVB.json"  background="transparent"  speed="1"  style="width: 550px; height: 400px;"  loop autoplay></lottie-player>
     <div class="info container" style="display: flex; flex-direction: column; max-width: 50%; font-size: 120%;">
-    <p>You have <span style="color: green;" id="correct">{{wring}}</span> correct answers.</p>
-    <p>You have <span style="color: red;" id="wrong"></span> wrong answers.</p>
-    <p>Your total score is : <span id="score"></span>%</p>
+    <p>You have <span style="color: green;" id="correct">{{score.correct}}</span> correct answers.</p>
+    <p>You have <span style="color: red;" id="wrong">{{score.wrong}}</span> wrong answers.</p>
+    <p>Your total score is : <span id="score">{{score.points}}</span>%</p>
 </div>
 </div>
 

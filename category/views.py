@@ -14,8 +14,9 @@ def quizes(request,slug):
 
 @login_required
 def result(request):
-    print("Finally!")
-    return render(request,'category/results.html')
+    user_id=request.user.id
+    score=Scores.objects.get(user_id=user_id)
+    return render(request,'category/results.html',context={'score':score})
 
 @login_required
 def quiz(request,url,slug):
@@ -54,11 +55,9 @@ def quiz(request,url,slug):
             passed=True
         else:
             passed=False
-        print("Data to save: ",request.user.id," ",quiz," ",total_score," ",wrong," ",correct)
         Scores.objects.update_or_create(user_id=request.user,quiz_id=quiz,points=total_score,correct=correct,wrong=wrong,passed=passed)
         db.connections.close_all()
-    
-        return render(request,'category/results.html',context={'wrong':wrong})
+        return render(request,'category/results.html')
 
 
 
