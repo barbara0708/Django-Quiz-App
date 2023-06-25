@@ -12,6 +12,7 @@
     <p>You have <span style="color: red;" id="wrong">{{score.wrong}}</span> wrong answers.</p>
     <p>Your total score is : <span id="score">{{score.points}}</span>%</p>
     <form method="POST">
+        {% csrf_token %}
         <button type="submit">Retake the test</button>
     </form>
 </div>
