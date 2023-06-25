@@ -18,8 +18,8 @@ class Question(models.Model):
         return str(self.content) 
 
 class Scores(models.Model):
-    user_id=models.OneToOneField(User,related_name='score',on_delete=models.CASCADE,null=True)
-    quiz_id=models.OneToOneField(Quiz,related_name='score',on_delete=models.CASCADE,null=True)
+    user_id=models.ForeignKey(User,related_name='score',on_delete=models.CASCADE,null=True)
+    quiz_id=models.ForeignKey(Quiz,related_name='score',on_delete=models.CASCADE,null=True)
     points=models.IntegerField(null=True)
     correct=models.IntegerField(null=True)
     wrong=models.IntegerField(null=True)

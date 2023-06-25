@@ -55,7 +55,7 @@ def quiz(request,url,slug):
         else:
             passed=False
         print("Data to save: ",request.user.id," ",quiz," ",total_score," ",wrong," ",correct)
-        Scores.objects.update_or_create(id=int(request.user.id),quiz_id=quiz,points=total_score,correct=correct,wrong=wrong,passed=passed)
+        Scores.objects.update_or_create(user_id=request.user,quiz_id=quiz,points=total_score,correct=correct,wrong=wrong,passed=passed)
         db.connections.close_all()
     
         return render(request,'category/results.html',context={'wrong':wrong})
