@@ -14,13 +14,13 @@ def quizes(request,slug):
     return render(request,'category/quizes.html',context={'quizzes':all_quizes})
 
 @login_required
-def result(request,slug, url):
+def result(request):
     user_id=request.user.id
     if request.method=='POST':
-        Scores.objects.get(user_id=user_id).delete()
+        Scores.objects.filter(user_id=user_id).latest('quizdate').delete()
         return redirect('quiz')
     if request.method=='GET':
-        score=Scores.objects.get(user_id=user_id)
+        score=Scores.objects.filter(user_id=user_id).latest('quizdate')
         return render(request,'category/results.html',context={'score':score})
 
 @login_required
