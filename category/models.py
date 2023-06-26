@@ -23,7 +23,7 @@ class Scores(models.Model):
     points=models.IntegerField(null=True)
     correct=models.IntegerField(null=True)
     wrong=models.IntegerField(null=True)
-    quizdate=models.DateField(auto_now_add=True)
+    quizdate=models.DateTimeField(auto_now_add=True)
     passed=models.BooleanField(default=False,null=True)
     def __str__(self):
         return str(self.points) 
