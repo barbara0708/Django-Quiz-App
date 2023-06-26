@@ -14,7 +14,7 @@ def quizes(request,slug):
     return render(request,'category/quizes.html',context={'quizzes':all_quizes})
 
 @login_required
-def result(request):
+def result(request,slug, url):
     user_id=request.user.id
     if request.method=='POST':
         Scores.objects.get(user_id=user_id).delete()
