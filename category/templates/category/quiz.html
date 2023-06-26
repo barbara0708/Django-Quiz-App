@@ -90,8 +90,8 @@
   }
   return cookieValue;
 }
-    const url="{% url 'result' %}";
     function submitResult(){
+      var newURL=""
       fetch("",{
       method: "POST",
       dataType: "json",
@@ -101,7 +101,9 @@
         "X-CSRFToken": getCookie("csrftoken"),  
       }
 }).then(
-      window.location.replace("{% url 'result' %}"),
+      newURL=location.protocol + '//' + location.host + location.pathname+"/result",
+      console.log(newURL),
+      window.location.replace(newURL),
       sessionStorage.clear()
 );}
 
