@@ -14,11 +14,10 @@ def quizes(request,slug):
     return render(request,'category/quizes.html',context={'quizzes':all_quizes})
 
 @login_required
-def result(request):
+def result(request,slug,url):
     user_id=request.user.id
     if request.method=='POST':
-        Scores.objects.filter(user_id=user_id).latest('quizdate').delete()
-        return redirect('quiz')
+        return redirect("http://127.0.0.1:8000/categories/category/"+slug+'/')
     if request.method=='GET':
         score=Scores.objects.filter(user_id=user_id).latest('quizdate')
         return render(request,'category/results.html',context={'score':score})
