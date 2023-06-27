@@ -51,6 +51,7 @@
             </div>
            
         </div>
+        <div>{{score}}</div>
       </section>
 <script>
     var answers=[]
@@ -101,9 +102,10 @@
         "X-CSRFToken": getCookie("csrftoken"),  
       }
 }).then(
-      newURL=location.protocol + '//' + location.host + location.pathname+"/result",
-      console.log(newURL),
-      window.location.replace(newURL),
+      //newURL=location.protocol + '//' + location.host + location.pathname+"/result",
+      //console.log(newURL),
+      //window.location.replace(newURL),
+      
       sessionStorage.clear()
 );}
 

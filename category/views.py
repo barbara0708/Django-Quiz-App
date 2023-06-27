@@ -63,7 +63,7 @@ def quiz(request,url,slug):
         print("Data to update: quiz_id=",quiz,"points=",total_score,"correct=",correct,"wrong=",wrong,"passed=",passed)
         Scores.objects.filter(pk=score.id).update(quiz_id=quiz,points=total_score,correct=correct,wrong=wrong,passed=passed)
         db.connections.close_all()
-        return HttpResponse("<p>Page was not found</p>")
+        return render(request,'category/quiz.html',context={'score':total_score})
 
 
 
