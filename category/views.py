@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 import json
 from django import db
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 @login_required
 def quizes(request,slug):
@@ -18,9 +18,8 @@ def result(request,slug,url):
     user_id=request.user.id
     if request.method=='POST':
         return redirect("http://127.0.0.1:8000/categories/category/"+slug+'/')
-    if request.method=='GET':
-        score=Scores.objects.get(user_id=user_id)
-        return render(request,'category/results.html',context={'score':score})
+    score=Scores.objects.filter(user_id=user_id).latest('quizdate')
+    return render(request,'category/results.html',context={'score':score})
 
 @login_required
 def quiz(request,url,slug):
@@ -35,9 +34,9 @@ def quiz(request,url,slug):
     op=paginator2.get_page(page_number)
     context={'page_obj':question,'options':op}
     Scores.objects.update_or_create(user_id=request.user,quiz_id=quiz,points=0,correct=0,wrong=0,passed=False)
+    score=Scores.objects.filter(user_id=request.user.id).latest('quizdate')
     db.connections.close_all()
     
-
     if request.method=='GET':
         request.session['previous_page'] = request.path_info + "?page=" + request.GET.get("page", '1')
         return render(request,'category/quiz.html',context)
@@ -61,7 +60,8 @@ def quiz(request,url,slug):
         else:
             passed=False
         #Scores.objects.update_or_create(user_id=request.user,quiz_id=quiz,points=total_score,correct=correct,wrong=wrong,passed=passed)
-        Scores.objects.filter(user_id=request.user).update(quiz_id=quiz,points=total_score,correct=correct,wrong=wrong,passed=passed)
+        print("Data to update: quiz_id=",quiz,"points=",total_score,"correct=",correct,"wrong=",wrong,"passed=",passed)
+        Scores.objects.filter(pk=score.id).update(quiz_id=quiz,points=total_score,correct=correct,wrong=wrong,passed=passed)
         db.connections.close_all()
         return HttpResponse("<p>Page was not found</p>")
 
