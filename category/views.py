@@ -19,7 +19,7 @@ def result(request,slug,url):
     if request.method=='POST':
         return redirect("http://127.0.0.1:8000/categories/category/"+slug+'/')
     if request.method=='GET':
-        score=Scores.objects.filter(user_id=user_id).latest('quizdate')
+        score=Scores.objects.get(user_id=user_id)
         return render(request,'category/results.html',context={'score':score})
 
 @login_required
@@ -34,6 +34,7 @@ def quiz(request,url,slug):
     question=paginator.get_page(page_number)
     op=paginator2.get_page(page_number)
     context={'page_obj':question,'options':op}
+    Scores.objects.update_or_create(user_id=request.user,quiz_id=quiz,points=0,correct=0,wrong=0,passed=False)
     db.connections.close_all()
     
 
@@ -59,7 +60,8 @@ def quiz(request,url,slug):
             passed=True
         else:
             passed=False
-        Scores.objects.update_or_create(user_id=request.user,quiz_id=quiz,points=total_score,correct=correct,wrong=wrong,passed=passed)
+        #Scores.objects.update_or_create(user_id=request.user,quiz_id=quiz,points=total_score,correct=correct,wrong=wrong,passed=passed)
+        Scores.objects.filter(user_id=request.user).update(quiz_id=quiz,points=total_score,correct=correct,wrong=wrong,passed=passed)
         db.connections.close_all()
         return HttpResponse("<p>Page was not found</p>")
 
