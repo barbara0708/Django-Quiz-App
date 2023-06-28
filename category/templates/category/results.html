@@ -7,14 +7,20 @@
 <div class="container " style="display: flex; flex-direction: column; flex-wrap: wrap; margin: auto; width: 40%;" >
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_ZmsQVB.json"  background="transparent"  speed="1"  style="width: 550px; height: 400px;"  loop autoplay></lottie-player>
-    <div class="info container" style="display: flex; flex-direction: column; max-width: 50%; font-size: 120%;">
+
+<div class="info container" style="display: flex; flex-direction: column; max-width: 50%; font-size: 120%;">
+    {% if ready %}    
     <p>You have <span style="color: green;" id="correct">{{score.correct}}</span> correct answers.</p>
     <p>You have <span style="color: red;" id="wrong">{{score.wrong}}</span> wrong answers.</p>
     <p>Your total score is : <span id="score">{{score.points}}</span>%</p>
+    <a href="http://127.0.0.1:8000/categories/"><button class="btn btn-dark ">Back to all categories</button></a>
+    {% endif %}
+    {% if not ready %}
     <form method="POST">
         {% csrf_token %}
-        <button type="submit">Back to all quizes in this category</button>
+        <button type="submit" class="btn btn-dark btn-lg">Click me to see the result!</button>
     </form>
+    {% endif %}
 </div>
 </div>
 

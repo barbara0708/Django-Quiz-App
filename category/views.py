@@ -15,11 +15,14 @@ def quizes(request,slug):
 
 @login_required
 def result(request,slug,url):
+    ready=False
     user_id=request.user.id
     if request.method=='POST':
-        return redirect("http://127.0.0.1:8000/categories/category/"+slug+'/')
+        ready=True
+        score=Scores.objects.filter(user_id=user_id).latest('quizdate')
+        return render(request,'category/results.html',context={'score':score,'ready':ready})
     score=Scores.objects.filter(user_id=user_id).latest('quizdate')
-    return render(request,'category/results.html',context={'score':score})
+    return render(request,'category/results.html',context={'score':score,'ready':ready})
 
 @login_required
 def quiz(request,url,slug):
