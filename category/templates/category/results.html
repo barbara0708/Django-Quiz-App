@@ -11,12 +11,15 @@
 </div>
 <div class="col-xs-1 text-center" >
     {% if ready %}    
-    <h5 class="lead text-center"><b>{{msg}}</b></h5>
-    <p class="lead text-center"><b>You have <span style="color: green;" id="correct">{{score.correct}}</span> correct answers.</b></p>
-    <p class="lead text-center"><b>You have <span style="color: red;" id="wrong">{{score.wrong}}</span> wrong answers.</b></p>
-    <p class="lead text-center"><b>Your total score is : <span id="score">{{score.points}}</span>%</b></p>
-
-    <a href="http://127.0.0.1:8000/categories/"><button class="btn btn-dark btn-lg">Back to all categories</button></a>
+    <p class="lead text-center shadow p-3 mb-5 bg-white rounded" style="font-size: 2vw;"><b>{{msg}}</b></p>
+        <div class="d-flex justify-content-center">
+            <div class="col-xs-1 text-center">
+            <p class="lead text-center"><b>You have <span style="color: green;" id="correct">{{score.correct}}</span> correct answers.</b></p>
+            <p class="lead text-center"><b>You have <span style="color: red;" id="wrong">{{score.wrong}}</span> wrong answers.</b></p>
+            <p class="lead text-center"><b>Your total score is : <span id="score">{{score.points}}</span>%</b></p>
+        </div>
+            <a href="http://127.0.0.1:8000/categories/" style="margin: 4%;"><button class="btn btn-dark btn-lg">Back to all categories</button></a>
+    </div>
     {% endif %}
     {% if not ready %}
     <form method="POST">
