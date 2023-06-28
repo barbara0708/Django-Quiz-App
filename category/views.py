@@ -16,11 +16,16 @@ def quizes(request,slug):
 @login_required
 def result(request,slug,url):
     ready=False
+    msg=""
     user_id=request.user.id
     if request.method=='POST':
         ready=True
         score=Scores.objects.filter(user_id=user_id).latest('quizdate')
-        return render(request,'category/results.html',context={'score':score,'ready':ready})
+        if score.passed:
+            msg="Congratulations! You have successfully passed the quiz and demonstrated your knowledge on the subject. Well done!"
+        else:
+            msg="Oops! It seems like you didn't pass the quiz this time. Don't worry, though. Keep learning and give it another try!"
+        return render(request,'category/results.html',context={'score':score,'ready':ready,'msg':msg})
     score=Scores.objects.filter(user_id=user_id).latest('quizdate')
     return render(request,'category/results.html',context={'score':score,'ready':ready})
 

@@ -13,7 +13,8 @@
     <p>You have <span style="color: green;" id="correct">{{score.correct}}</span> correct answers.</p>
     <p>You have <span style="color: red;" id="wrong">{{score.wrong}}</span> wrong answers.</p>
     <p>Your total score is : <span id="score">{{score.points}}</span>%</p>
-    <a href="http://127.0.0.1:8000/categories/"><button class="btn btn-dark ">Back to all categories</button></a>
+    <p class="lead text-center">{{msg}}</p>
+    <a href="http://127.0.0.1:8000/categories/"><button class="btn btn-dark btn-lg">Back to all categories</button></a>
     {% endif %}
     {% if not ready %}
     <form method="POST">
