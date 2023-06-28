@@ -4,16 +4,18 @@
 
 {% block content %}
 
-<div class="container " style="display: flex; flex-direction: column; flex-wrap: wrap; margin: auto; width: 40%;" >
+<div class="container col-xs-1 text-center">
+    <div class="container col-xs-1 text-center" style="width: 600px; margin: auto;" >
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-<lottie-player src="https://assets10.lottiefiles.com/packages/lf20_ZmsQVB.json"  background="transparent"  speed="1"  style="width: 550px; height: 400px;"  loop autoplay></lottie-player>
-
-<div class="info container" style="display: flex; flex-direction: column; max-width: 50%; font-size: 120%;">
+<lottie-player src="https://assets10.lottiefiles.com/packages/lf20_ZmsQVB.json"  background="transparent"  speed="1"  style="width: 600px; height: 350px;"  loop autoplay></lottie-player>
+</div>
+<div class="col-xs-1 text-center" >
     {% if ready %}    
-    <p>You have <span style="color: green;" id="correct">{{score.correct}}</span> correct answers.</p>
-    <p>You have <span style="color: red;" id="wrong">{{score.wrong}}</span> wrong answers.</p>
-    <p>Your total score is : <span id="score">{{score.points}}</span>%</p>
-    <p class="lead text-center">{{msg}}</p>
+    <h5 class="lead text-center"><b>{{msg}}</b></h5>
+    <p class="lead text-center"><b>You have <span style="color: green;" id="correct">{{score.correct}}</span> correct answers.</b></p>
+    <p class="lead text-center"><b>You have <span style="color: red;" id="wrong">{{score.wrong}}</span> wrong answers.</b></p>
+    <p class="lead text-center"><b>Your total score is : <span id="score">{{score.points}}</span>%</b></p>
+
     <a href="http://127.0.0.1:8000/categories/"><button class="btn btn-dark btn-lg">Back to all categories</button></a>
     {% endif %}
     {% if not ready %}
