@@ -1,0 +1,11 @@
+{% extends 'core/header.html' %}
+
+{% block title %}Quiz{% endblock %}
+
+{% block content %}
+
+{% for score in scores %}
+<p>{{score.points}}</p>
+{% endfor %}
+
+{% endblock %}

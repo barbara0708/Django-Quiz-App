@@ -5,6 +5,7 @@ from django.contrib.auth import login,authenticate,logout
 from .forms import NewUserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 from .models import Categories
+from category.models import Scores
 from django.contrib.auth.decorators import login_required
 
 
@@ -67,5 +68,8 @@ def reset_complete(request):
 def reset_confirm(request):
     return render(request,'core/reset_password_confirm.html')
 
+@login_required
 def progress(request):
-    return render(request,'core/progress.html')
+    scores=Scores.objects.filter(user_id=request.user)
+    return render(request,'core/progress.html',context={'scores':scores})
+
