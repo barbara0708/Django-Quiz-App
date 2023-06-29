@@ -76,10 +76,10 @@ def progress(request):
     quizes=Quiz.objects.all()
     for s in scores:
         if s.quiz_id not in quiz_res.keys():
-            quiz_res[s.quiz_id.id]=[]
-            quiz_res[s.quiz_id.id].append(s)
+            quiz_res[s.quiz_id]=[]
+            quiz_res[s.quiz_id].append(s)
         else:
-            quiz_res[s.quiz_id.id].append(s)
+            quiz_res[s.quiz_id].append(s)
         
     return render(request,'core/progress.html',context={'quiz_res':quiz_res})
 
