@@ -70,17 +70,20 @@ def reset_confirm(request):
 
 @login_required
 def progress(request):
-    id=request.user.id
-    scores=Scores.objects.filter(user_id=request.user)
-    quiz_res={}
-    #quizes=Quiz.objects.all()
-    for s in scores:
-        quiz=Quiz.objects.get(pk=s.quiz_id.id)
-        if s.quiz_id not in quiz_res.keys():
-            quiz_res[quiz]=[]
-            quiz_res[quiz].append(s)
-        else:
-            quiz_res[quiz].append(s)
-        
-    return render(request,'core/progress.html',context={'quiz_res':quiz_res})
+    if request.method=='GET':
+        id=request.user.id
+        scores=Scores.objects.filter(user_id=request.user)
+        quiz_res={}
+    
+        for s in scores:
+            quiz=Quiz.objects.get(pk=s.quiz_id.id)
+            if s.quiz_id not in quiz_res.keys():
+                quiz_res[quiz]=[]
+                quiz_res[quiz].append(s)
+            else:
+                quiz_res[quiz].append(s)
+        return render(request,'core/progress.html',context={'quiz_res':quiz_res})
 
+    if request.method=='POST':
+        
+        return render(request,'core/progress.html',context={'quiz_res':quiz_res})

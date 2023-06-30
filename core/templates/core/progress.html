@@ -79,14 +79,13 @@
                     <span class="text-danger"><s>$21.99</s></span>
                   </div>
                   <h6 class="text-success">Free shipping</h6>
-                  <div class="d-flex flex-column mt-4">
-                    <a href="quiz/{{quiz.url}}"><button class="btn btn-sm" style="background-color: #7ebdc2; color: white;" type="button">Take this quiz again</button></a>
-                    <form action="" method="POST">
-                    <button class="btn  btn-sm mt-2" style="border: 2px solid; border-color: #7ebdc2;" type="submit">
+                  <form method="POST" class="d-flex flex-column mt-4">
+                    {% csrf_token %}
+                    <a href="http://127.0.0.1:8000/categories/category/{{key.category.name}}/quiz/{{key.url}}" class="btn btn-sm" style="background-color: #7ebdc2; color: white;">Take this quiz again</a>
+                    <button class="btn btn-sm mt-2" style="border: 2px solid; border-color: #7ebdc2;" type="submit">
                       Delete from progress
                     </button>
                   </form>
-                  </div>
                 </div>
               </div>
             </div>
