@@ -76,8 +76,6 @@ def progress(request):
     #quizes=Quiz.objects.all()
     for s in scores:
         quiz=Quiz.objects.get(pk=s.quiz_id.id)
-        print(type(quiz))
-        
         if s.quiz_id not in quiz_res.keys():
             quiz_res[quiz]=[]
             quiz_res[quiz].append(s)

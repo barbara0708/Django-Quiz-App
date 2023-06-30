@@ -30,7 +30,7 @@
                   </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-xl-6">
-                  <h5>{{key.quiz_name.desc}}</h5>
+                  <h5>{{key.quiz_name}}</h5>
                 <ul class="nav nav-list">
                     <li class="divider"></li>
                     <li>
@@ -80,10 +80,12 @@
                   </div>
                   <h6 class="text-success">Free shipping</h6>
                   <div class="d-flex flex-column mt-4">
-                    <button class="btn btn-sm" style="background-color: #7ebdc2; color: white;" type="button">Take this quiz again</button>
-                    <button class="btn  btn-sm mt-2" style="border: 2px solid; border-color: #7ebdc2;" type="button">
+                    <a href="quiz/{{quiz.url}}"><button class="btn btn-sm" style="background-color: #7ebdc2; color: white;" type="button">Take this quiz again</button></a>
+                    <form action="" method="POST">
+                    <button class="btn  btn-sm mt-2" style="border: 2px solid; border-color: #7ebdc2;" type="submit">
                       Delete from progress
                     </button>
+                  </form>
                   </div>
                 </div>
               </div>
