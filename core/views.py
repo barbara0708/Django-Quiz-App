@@ -85,5 +85,5 @@ def progress(request):
         return render(request,'core/progress.html',context={'quiz_res':quiz_res})
 
     if request.method=='POST':
-        
+        Scores.objects.filter(user_id=request.user).delete()
         return render(request,'core/progress.html',context={'quiz_res':quiz_res})
