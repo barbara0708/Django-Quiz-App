@@ -37,14 +37,14 @@
                         <a href="#" data-toggle="collapse" data-target="#toggle">See All Scores</a>
                     </li>
                 </ul>
-                    <ul id="toggle" class="list-group list-group-light collapse out ">
+                    <ul id="toggle" style="list-style-type: none;" class="collapse out" >
                         {% for v in values %}
-                        <li class="list-group-item">    
+                        <li class="m-3">    
                             <div class="card">
                             <div class="card-header">
                                 {{v.quizdate}}
                             </div>
-                            
+            
                             <div class="card-body">
                                 <div class="row">
                                   <div class="col">
@@ -80,8 +80,8 @@
                   </div>
                   <h6 class="text-success">Free shipping</h6>
                   <div class="d-flex flex-column mt-4">
-                    <button class="btn btn-primary btn-sm" type="button">Take this quiz again</button>
-                    <button class="btn btn-outline-primary btn-sm mt-2" type="button">
+                    <button class="btn btn-sm" style="background-color: #7ebdc2; color: white;" type="button">Take this quiz again</button>
+                    <button class="btn  btn-sm mt-2" style="border: 2px solid; border-color: #7ebdc2;" type="button">
                       Delete from progress
                     </button>
                   </div>
