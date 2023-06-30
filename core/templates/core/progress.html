@@ -20,7 +20,7 @@
               <div class="row">
                 <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
                   <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                    <img src=" static '{{key.img}}'" alt="{{key.img}}"
+                    <img src="{{key.img.url}}" alt="{{key.img}}"
                       class="w-100" />
                     <a href="#!">
                       <div class="hover-overlay">
@@ -30,7 +30,7 @@
                   </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-xl-6">
-                  <h5>{{key.quiz_name}}</h5>
+                  <h5>{{key.quiz_name.img}}</h5>
                 <ul class="nav nav-list">
                     <li class="divider"></li>
                     <li>
@@ -49,20 +49,20 @@
                                 <div class="row">
                                   <div class="col">
                                     <div class="container-inner">
-                                        <span class="badge badge-primary rounded-pill" style="color: green;">{{v.correct}}</span> 
-                                      
+                                        <span style="color: green;">Correct</span> 
+                                        <span class="badge badge-pill bg-success ">{{v.correct}}</span>
                                     </div>
                                   </div>
                                 <div class="col">
                                     <div class="container-inner">
                                         <span style="color: red;">Wrong</span>
-                                      {{v.wrong}}
+                                      <span class="badge badge-pill bg-danger ">{{v.wrong}}</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="container-inner">
-                                        <span style="color: black;">Total points</span>
-                                      {{v.points}}
+                                        <span style="color: #4ea3a9;">Points</span>
+                                        <span class="badge badge-pill bg-warning ">{{v.points}}%</span>
                                     </div>
                                   </div>
                                 </div>
