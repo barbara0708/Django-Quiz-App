@@ -19,9 +19,10 @@ def logout_request(request):
 
 @login_required
 def categories(request):
-    cat=request.GET.get('search_category')
+    cat=request.POST.get('search')
+    print(cat)
     if cat is not None:
-        all_categories=Categories.objects.filter(name__contains=cat)
+        all_categories=Categories.objects.filter(name__icontains=cat)
     else:
         all_categories=Categories.objects.all()
     return render(request,'core/categories.html',context={'categories':all_categories})
@@ -92,3 +93,6 @@ def progress(request):
         Scores.objects.filter(quiz_id=quiz,user_id=request.user.id).delete()
         quiz_res=upd_info(request)
         return render(request,'core/progress.html',context={'quiz_res':quiz_res})
+
+def search_view(request):
+    pass

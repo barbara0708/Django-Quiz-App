@@ -1,18 +1,17 @@
 {% extends 'core/header.html' %}
 
 {% block title %}Categories{% endblock %}
-
 {% block content %}
-<form method="GET" class="d-flex input-group w-auto mt-5" style="max-width: 30%; margin: auto;" >
-  <input
-  
-    type="search"
-    name="search_category"
-    class="form-control rounded"
-    placeholder="Search"
-    aria-label="Search"
-    aria-describedby="search-addon"
-  />
+<!-- 
+<form class="d-flex input-group w-auto mt-5" style="max-width: 30%; margin: auto;" > -->
+  <form>
+  {% csrf_token %}
+  <input type="text"
+        hx-post="{% url 'categories' %}" 
+        hx-target='#results'
+        hx-trigger="keyup changed delay:500ms"
+        name="search"
+        placeholder="Search films..." />
   <span class="input-group-text border-0" id="search-addon">
     <button type="submit" class="btn btn-primary">Find</button>
   </span>
