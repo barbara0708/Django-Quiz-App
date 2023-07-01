@@ -82,7 +82,7 @@
                   <form method="POST" class="d-flex flex-column mt-4">
                     {% csrf_token %}
                     <a href="http://127.0.0.1:8000/categories/category/{{key.category.name}}/quiz/{{key.url}}" class="btn btn-sm" style="background-color: #7ebdc2; color: white;">Take this quiz again</a>
-                    <button class="btn btn-sm mt-2" style="border: 2px solid; border-color: #7ebdc2;" type="submit">
+                    <button name="quizID" value="{{key.id}}" class="btn btn-sm mt-2" style="border: 2px solid; border-color: #7ebdc2;" type="submit">
                       Delete from progress
                     </button>
                   </form>
