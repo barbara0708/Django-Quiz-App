@@ -4,7 +4,7 @@
 {% block content %}
 <!-- 
 <form class="d-flex input-group w-auto mt-5" style="max-width: 30%; margin: auto;" > -->
-  <form>
+  <!-- <form>
   {% csrf_token %}
   <input type="text"
         hx-post="{% url 'categories' %}" 
@@ -15,7 +15,21 @@
   <span class="input-group-text border-0" id="search-addon">
     <button type="submit" class="btn btn-primary">Find</button>
   </span>
-</form>
+</form> -->
+<div class="d-flex justify-content-end mb-4">
+  {% csrf_token %}
+  <input type="text"
+      hx-post="{% url 'categories' %}" 
+      hx-target='#results'
+      hx-trigger="keyup changed delay:500ms"
+      name="search"
+      class="form-control-sm mr-2" 
+      placeholder="Search films..." />
+  
+  </form>
+</div>
+<div id="results"></div>
+
 <section class="pt-8 pt-md-9">
   
   <div class="row" style="max-width: 50%; margin: auto;">
