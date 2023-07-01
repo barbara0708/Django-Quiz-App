@@ -68,10 +68,7 @@ def reset_complete(request):
 def reset_confirm(request):
     return render(request,'core/reset_password_confirm.html')
 
-
-
-@login_required
-def progress(request):
+def upd_info(request):
     id=request.user.id
     scores=Scores.objects.filter(user_id=request.user)
     quiz_res={}
@@ -82,10 +79,16 @@ def progress(request):
             quiz_res[quiz].append(s)
         else:
             quiz_res[quiz].append(s)
+    return quiz_res
+
+@login_required
+def progress(request):
+    quiz_res=upd_info(request)
     if request.method=='GET':
         return render(request,'core/progress.html',context={'quiz_res':quiz_res})
 
     if request.method=='POST':
         quiz=request.POST.get('quizID')
-        scores=Scores.objects.filter(quiz_id=quiz,user_id=request.user.id).delete()
+        Scores.objects.filter(quiz_id=quiz,user_id=request.user.id).delete()
+        quiz_res=upd_info(request)
         return render(request,'core/progress.html',context={'quiz_res':quiz_res})
