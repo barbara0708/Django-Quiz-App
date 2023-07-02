@@ -19,7 +19,8 @@ def logout_request(request):
 
 @login_required
 def categories(request):
-    return render(request,'core/categories.html')
+    opt=True
+    return render(request,'core/categories.html',context={'opt':opt})
 
 def search(request):
     cat=request.POST.get('search')
