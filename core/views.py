@@ -19,7 +19,12 @@ def logout_request(request):
 
 @login_required
 def categories(request):
-    all_categories=Categories.objects.all()
+    cat=request.POST.get('search')
+    print(cat)
+    if cat is None:
+        all_categories=Categories.objects.all()
+    else:
+        all_categories=[]
     return render(request,'core/categories.html',context={'categories':all_categories})
 
 def search(request):
