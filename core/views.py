@@ -22,6 +22,7 @@ def categories(request):
     all_categories=Categories.objects.all()
     if request.method=='POST':
         all_categories=[]
+        return render(request,'core/categories.html')
     return render(request,'core/categories.html',context={'categories':all_categories})
 
 def search(request):
