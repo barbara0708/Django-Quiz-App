@@ -19,7 +19,7 @@
 <div class="d-flex justify-content-end mb-4">
   {% csrf_token %}
   <input type="text"
-      hx-post="{% url 'categories' %}" 
+      hx-post="{% url 'search' %}" 
       hx-target='#results'
       hx-trigger="keyup changed delay:500ms"
       name="search"

@@ -6,6 +6,7 @@ urlpatterns=[
     path("",views.index,name='index'),
     path("progress/",views.progress,name='progress'),
     path('categories/',views.categories,name="categories"),
+    path('categories/search',views.search,name="search"),
     path('categories/category/',include('category.urls'),name='category'),
     path('sign-up/',views.signup_view,name="sign-up"),
     path('login/',views.login_view,name="login"),
@@ -15,9 +16,3 @@ urlpatterns=[
     path('password_reset_complete/',auth_views.PasswordResetCompleteView.as_view(template_name='core/password_reset_complete.html'),name='password_reset_complete'),
     path('password_reset_confirm/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(template_name='core/password_reset_confirm.html'),name='password_reset_confirm')
 ]
-
-htmxurlpatterns=[
-    path('categories/search/',views.search_view,name='search-view')
-]
-
-urlpatterns+=htmxurlpatterns
