@@ -7,10 +7,19 @@ from django.contrib.auth.forms import AuthenticationForm
 from .models import Categories
 from category.models import Scores,Quiz
 from django.contrib.auth.decorators import login_required
+import random
 
 
 def index(request):
-    return render(request,'core/index.html')
+    ids=[]
+    quizes=Quiz.objects.all()
+    for q in quizes:
+        ids.append(q.id)   
+    data=[]
+    for i in range(4):
+        num=random.randint(0,len(ids)-1)
+        data.append(Quiz.objects.get(pk=ids[num]))
+    return render(request,'core/index.html',context={'data':data})
 
 def logout_request(request):
     logout(request)
