@@ -12,6 +12,7 @@
  
 </style>
 <div class="container py-5">
+  {% if quiz_res.items %}
     {% for key, values in quiz_res.items %}
     <div class="row justify-content-center mb-3">
         <div class="col-md-12 col-xl-10">
@@ -92,7 +93,21 @@
           </div>
         </div>
       </div>
-    {% endfor %}
+    {% endfor %}    
+    {% else %}
+      <div class="row justify-content-center mb-3 mt-5 rounded" style="border-radius: 10px;">
+        <div class="col-md-12 col-xl-10">
+          <p class="lead text-center shadow p-3 mb-5 bg-white rounded" style="font-size: 1.5vw;border-radius: 10px;"><b>It appears that you haven't made any quiz progress yet. Why not give it a try and test your knowledge? Embark on a learning journey and track your quiz progress to unlock new achievements and expand your expertise!</b></p>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center mt-2" style=" margin: auto; ">
+        <a  href="http://127.0.0.1:8000/categories/">
+        <button type="button" class="btn btn-primary w-100 btn-lg btn-block"
+            >Search For A Quiz</button>
+          </a>
+      </div>
+      
+    {% endif %}
 </div>
   
 

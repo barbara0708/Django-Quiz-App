@@ -127,9 +127,3 @@
     pointer-events: none;
     color: #aaa;
 }
-
-input:focus{
-  outline: none !important;
-  border-color: black;
-  box-shadow: 0 0 10px black;
-}
