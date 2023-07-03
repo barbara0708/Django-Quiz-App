@@ -1,6 +1,7 @@
 {% extends 'core/header.html' %}
 
 {% block title %}Categories{% endblock %}
+
 {% block content %}
 <div class="form-group has-search mt-5" style="max-width: 30%; margin: auto;">
   <span class="fa fa-search form-control-feedback"></span>
@@ -10,6 +11,7 @@
       hx-target='#results'
       hx-trigger="keyup changed delay:500ms"
       name="search"
+      id="search-input"
       class="form-control" placeholder="Search" />
   </form>
 </div>
