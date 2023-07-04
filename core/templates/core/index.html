@@ -25,16 +25,15 @@
                             <div class="fs-5 mb-5">
                                 <span>The Universe full of quizes</span>
                             </div>
-                            <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
+                            <p class="lead">Welcome to our Quizland, where knowledge meets excitement! Explore our vast collection of quizzes spanning various topics and put your skills to the test. Track your progress, compete with friends, and unlock achievements as you embark on a journey of continuous learning. Are you ready to dive in and discover how much you truly know? Start quizzing now and let the quest for knowledge begin!</p>
                             <div class="d-flex">
                                 {% if request.user.is_authenticated %}
-                                <button class="btn btn-outline-light flex-shrink-0 bg-info text-light" style="width: 20rem; height: 3rem;" type="button">
-                                    <a class="nav-link text-light" aria-current="page" href="categories/">Let's get started!</a>
+                                <button class="btn btn-primary flex-shrink-0 mt-4" style="width: 20rem; height: 3rem;" type="button">
+                                    <a class="text-decoration-none" href="categories/">Let's get started!</a>
                                 </button>
                                 {% else %}
-                                <button class="btn btn-outline-light flex-shrink-0 bg-info text-light" style="width: 20rem; height: 3rem;" type="button">
-                                    <a class="nav-link text-light" aria-current="page" href="login/">Let's get started!</a>
-            
+                                <button class="btn btn-primary flex-shrink-0 mt-4" style="width: 20rem; height: 3rem;" type="button">
+                                    <a class="text-decoration-none" href="login/">Let's get started!</a>
                                 </button>  
                                 {% endif %}
                             </div>
@@ -50,7 +49,7 @@
                         {% for quiz in data %}
                         <div class="col mb-5">
                             <div class="card h-100">
-                                <img class="card-img-top" src="{{quiz.img.url}}" alt="{{quiz.quiz_name}}" />
+                                <img class="card-img-top h-70"  src="{{quiz.img.url}}" alt="{{quiz.quiz_name}}" />
                                 <div class="card-body p-4">
                                     <div class="text-center">
                                         <h5 class="fw-bolder">{{quiz.quiz_name}}</h5>
