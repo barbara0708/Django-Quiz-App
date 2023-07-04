@@ -21,6 +21,9 @@ def index(request):
         data.append(Quiz.objects.get(pk=ids[num]))
     return render(request,'core/index.html',context={'data':data})
 
+def profile(request):
+    return render(request,'core/profile.html')
+
 def logout_request(request):
     logout(request)
     messages.info(request, "You have successfully logged out.")
