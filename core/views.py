@@ -103,8 +103,9 @@ def upd_info(request):
 @login_required
 def progress(request):
     quiz_res=upd_info(request)
+    amount=len(quiz_res)
     if request.method=='GET':
-        return render(request,'core/progress.html',context={'quiz_res':quiz_res})
+        return render(request,'core/progress.html',context={'quiz_res':quiz_res,'amount':amount})
 
     if request.method=='POST':
         quiz=request.POST.get('quizID')
