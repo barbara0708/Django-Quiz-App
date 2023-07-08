@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class Quiz(models.Model):
     quiz_name=models.CharField(max_length=150,blank=True,null=True)
     desc=models.CharField(max_length=200,blank=True,null=True)
-    category=models.ForeignKey(Categories,on_delete=models.CASCADE,blank=True,null=True)
+    category=models.ManyToManyField(Categories,on_delete=models.CASCADE,null=True)
     url=models.SlugField(unique=True,blank=True,null=True)
     img=models.ImageField(upload_to='images/',blank=True,null=True)
     def __str__(self) :
