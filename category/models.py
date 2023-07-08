@@ -5,21 +5,21 @@ from django.contrib.auth.models import User
 class Quiz(models.Model):
     quiz_name=models.CharField(max_length=150,blank=True,null=True)
     desc=models.CharField(max_length=200,blank=True,null=True)
-    category=models.ManyToManyField(Categories,on_delete=models.CASCADE,null=True)
+    category=models.ForeignKey(Categories,on_delete=models.CASCADE,null=True)
     url=models.SlugField(unique=True,blank=True,null=True)
     img=models.ImageField(upload_to='images/',blank=True,null=True)
     def __str__(self) :
         return str(self.quiz_name)
 
 class Question(models.Model):
-    quiz=models.ForeignKey(Quiz,related_name='question',on_delete=models.CASCADE,blank=True,null=True)
+    quiz=models.ForeignKey(Quiz,on_delete=models.CASCADE,blank=True,null=True)
     content=models.CharField(max_length=200,blank=True,null=True)
     def __str__(self):
         return str(self.content) 
 
 class Scores(models.Model):
-    user_id=models.ForeignKey(User,related_name='score',on_delete=models.CASCADE,null=True)
-    quiz_id=models.ForeignKey(Quiz,related_name='score',on_delete=models.CASCADE,null=True)
+    user_id=models.ForeignKey(User,on_delete=models.CASCADE,null=True)
+    quiz_id=models.ForeignKey(Quiz,on_delete=models.CASCADE,null=True)
     points=models.IntegerField(null=True)
     correct=models.IntegerField(null=True)
     wrong=models.IntegerField(null=True)
