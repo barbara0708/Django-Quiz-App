@@ -11,7 +11,7 @@ class Categories(models.Model):
 class UserInfo(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE,null=True,default=uuid.uuid1)
     profile_pic=models.ImageField(upload_to='images/profile_pictures/',blank=True,null=True)
-    birthday_date=models.DateField()
+    birthday_date=models.DateField(null=True)
     
     def __str__(self) :
         return self.user.username
