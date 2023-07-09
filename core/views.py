@@ -72,7 +72,7 @@ def signup_view(request):
             birthday=form.cleaned_data.get('birthday')
             user=User.objects.get(email__exact=email)
             print("User info: ",birthday," ",email," ",user.username)
-            #UserInfo.objects.create(user=user,birthday_date=birthday)
+            UserInfo.objects.create(user=user,birthday_date=birthday)
             messages.success(request,"Registration successful")
             return redirect('login')
         messages.error(request,"Unsuccessful registration. Invalid information.")

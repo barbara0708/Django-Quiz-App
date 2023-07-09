@@ -15,9 +15,9 @@
                   <div class="col-md-6 col-lg-7 d-flex align-items-center">
                     <div class="card-body p-4 p-lg-5 text-black">
       
-                      <form method="POST" action=".">
+                      <form method="POST" >
                         {% csrf_token %}
-                        <div class="d-flex align-items-center mb-3 pb-1">
+                      <div class="d-flex align-items-center mb-3 pb-1">
                           <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
                           <span class="h1 fw-bold mb-0">Sign Up</span>
                         </div>
@@ -26,30 +26,30 @@
       
                         
                         <div class="form-outline mb-4">
-                          <input type="text" placeholder="Username" id="username" name="username" class="form-control form-control-lg" />
+                          <input type="text" placeholder="Username" id="id_username" name="username" class="form-control form-control-lg" />
                         </div>
       
                         <div class="form-outline mb-4">
-                          <input type="text" placeholder="First Name" id="first_name" name="first_name" class="form-control form-control-lg" />
+                          <input type="text" placeholder="First Name" id="id_first_name" name="first_name" class="form-control form-control-lg" />
                         </div>
 
                         <div class="form-outline mb-4">
-                          <input type="text" placeholder="Last Name" id="last_name" name="last_name" class="form-control form-control-lg" />
+                          <input type="text" placeholder="Last Name" id="id_last_name" name="last_name" class="form-control form-control-lg" />
                         </div>
 
                         <div class="form-outline mb-4">
-                            <input type="email" id="email" name="email" placeholder="Email" class="form-control form-control-lg" />
+                            <input type="email" id="id_email" name="email" placeholder="Email" class="form-control form-control-lg" />
                           </div>
       
                           <div class="form-outline mb-4">
-                            <input type="date" id="birthday" name="birthday" placeholder="Birthday" class="form-control form-control-lg" />
+                            <input type="date" id="id_birthday" name="birthday" placeholder="Birthday" class="form-control form-control-lg" />
                           </div>
     
                         <div class="form-outline mb-4">
-                          <input type="password" id="password1" name="password1" placeholder="Password" class="form-control form-control-lg" />
+                          <input type="password" id="id_password1" name="password1" placeholder="Password" class="form-control form-control-lg" />
                         </div>
                         <div class="form-outline mb-4">
-                            <input type="password" id="password2" name="password2" placeholder="Repeat Password" class="form-control form-control-lg" />
+                            <input type="password" id="id_password2" name="password2" placeholder="Repeat Password" class="form-control form-control-lg" />
                         </div>
 
                         <div class="pt-1 mb-4">
@@ -58,8 +58,8 @@
       
                         <p style="color: #393f81;"><br>Already have an account? <a href="http://127.0.0.1:8000/login/"
                             style="color: #393f81;">Sign In</a></p>
-                             
-    {% if form.errors %}
+         
+                              {% if form.errors %}
     {% for field in form %}
       {% for error in field.errors %}
         <div class="mb-4 p-4 rounded-xl bg-red-300 text-white">
