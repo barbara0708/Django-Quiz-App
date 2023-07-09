@@ -9,6 +9,7 @@ from category.models import Scores,Quiz
 from django.contrib.auth.decorators import login_required
 import random
 from django.contrib.auth.models import User
+from .models import UserInfo
 
 def index(request):
     ids=[]
@@ -71,7 +72,6 @@ def signup_view(request):
             email=form.cleaned_data.get('email')
             birthday=form.cleaned_data.get('birthday')
             user=User.objects.get(email__exact=email)
-            print("User info: ",birthday," ",email," ",user.username)
             UserInfo.objects.create(user=user,birthday_date=birthday)
             messages.success(request,"Registration successful")
             return redirect('login')
@@ -109,8 +109,9 @@ def upd_info(request):
 def progress(request):
     quiz_res=upd_info(request)
     amount=len(quiz_res)
+    additional_info=UserInfo.objects.get(user=request.user)
     if request.method=='GET':
-        return render(request,'core/progress.html',context={'quiz_res':quiz_res,'amount':amount})
+        return render(request,'core/progress.html',context={'quiz_res':quiz_res,'amount':amount,'info':additional_info})
 
     if request.method=='POST':
         quiz=request.POST.get('quizID')
