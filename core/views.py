@@ -4,11 +4,11 @@ from django.contrib import messages
 from django.contrib.auth import login,authenticate,logout
 from .forms import NewUserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
-from .models import Categories
+from .models import Categories, UserInfo
 from category.models import Scores,Quiz
 from django.contrib.auth.decorators import login_required
 import random
-
+from django.contrib.auth.models import User
 
 def index(request):
     ids=[]
@@ -68,6 +68,10 @@ def signup_view(request):
         form=NewUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
+            email=form.cleaned_data.get('email')
+            birthday=form.cleaned_data.get('birthday')
+            user=User.objects.get(email__exact=email)
+            UserInfo.objects.create(user=user,birthday_date=birthday)
             messages.success(request,"Registration successful")
             return redirect('login')
         messages.error(request,"Unsuccessful registration. Invalid information.")
