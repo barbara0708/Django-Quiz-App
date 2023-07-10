@@ -58,18 +58,24 @@
       
                         <p style="color: #393f81;"><br>Already have an account? <a href="http://127.0.0.1:8000/login/"
                             style="color: #393f81;">Sign In</a></p>
-         
-                              {% if form.errors %}
-    {% for field in form %}
-      {% for error in field.errors %}
-        <div class="mb-4 p-4 rounded-xl bg-red-300 text-white">
-          <p>{{error|escape}}</p>
-        </div>
-      {% endfor %}
-    {% endfor %}
-  {% endif %}
                       </form>
       
+                      {% if form.non_field_errors %}
+                      <div class="alert alert-danger">
+                        {% for error in form.non_field_errors %}
+                        <strong>{{error}}</strong>
+                        {% endfor %}
+                      </div>
+                      {% endif %}
+                      {% if form.errors %}
+                        {% for field in form %}
+                            {% for error in field.errors %} 
+                               <div class="alert alert-danger">
+                                    <strong>{{field.name.capitalize}} - {{ error|escape }}</strong>
+                               </div>
+                            {% endfor %}
+                        {% endfor %}
+                     {% endif %}
                     </div>
                   </div>
                 </div>
