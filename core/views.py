@@ -59,10 +59,10 @@ def login_view(request):
             else:    
                 messages.error(request,"Invalid email or password")
             return redirect('categories')
-        else:
-            messages.error(request,"Invalid email or password")
-    form=AuthenticationForm()
-    return render(request,'core/login.html',context={'login_form':form})
+        return render(request,'core/login.html',context={'form':form})
+    else:
+        form=AuthenticationForm()
+        return render(request,'core/login.html',context={'form':form})
 
 def signup_view(request):
     if request.method=='POST':
