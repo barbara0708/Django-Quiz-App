@@ -114,10 +114,15 @@ def progress(request):
         return render(request,'core/progress.html',context={'quiz_res':quiz_res,'amount':amount,'info':additional_info})
 
     if request.method=='POST':
+
+
         quiz=request.POST.get('quizID')
         Scores.objects.filter(quiz_id=quiz,user_id=request.user.id).delete()
         quiz_res=upd_info(request)
         return render(request,'core/progress.html',context={'quiz_res':quiz_res,'amount':amount,'info':additional_info})
 
 def search_view(request):
+    pass
+
+def change_pic(request):
     pass
