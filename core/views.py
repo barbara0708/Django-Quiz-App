@@ -116,12 +116,13 @@ def progress(request):
 
     if request.method=='POST':
         if 'btnChangePicture' in request.POST:
-            form=ProfileForm(request.POST,request.FILES)
-            if form.is_valid():
-                form.save()
-                return redirect('success')
-            else:
-                form=ProfileForm()
+            print('hello')
+            # form=ProfileForm(request.POST,request.FILES)
+            # if form.is_valid():
+            #     form.save()
+            #     return redirect('success')
+            # else:
+            #     form=ProfileForm()
             return render(request, 'core/progress', {'form': form,'quiz_res':quiz_res,'amount':amount,'info':additional_info})
         else:
             quiz=request.POST.get('quizID')

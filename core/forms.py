@@ -15,6 +15,7 @@ class NewUserCreationForm(UserCreationForm):
         fields=["username","first_name","last_name","email","birthday","password1","password2"]
 
 class ProfileForm(forms.ModelForm):
+    profile_pic=forms.ImageField(label='Profile Picture')
     class Meta:
         model=UserInfo
-        fields=['profile_pic']
+        fields=('profile_pic',)
