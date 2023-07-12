@@ -19,18 +19,14 @@
                 <div class="row g-0">
                   <div class="col-md-4 gradient-custom text-center "
                     style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                    <img src="{{info.profile_pic.url}}"
+                      alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
+                    <form  method="POST" >
                       {% csrf_token %}
-                      <img 
-                          hx-post="{% url 'all' %}" 
-                          hx-target='#results'
-                          hx-trigger="click"
-                          name="picture"
-                          src="{{info.profile_pic.url}}"
-                          alt="Avatar" class="img-fluid my-5" style="width: 80px;"/>
-                      </form>
-                    <div id="results"></div>
-                    
-                    <h5>{{request.user.username}} </h5>
+                    {{form.as_p}}
+                      <button type="submit" name="btnChangePicture">Upload</button>
+                    </form>
+                      <h5>{{request.user.username}} </h5>
                     <p>{{request.user.first_name}} {{request.user.last_name}}</p>
                                       </div>
                   <div class="col-md-8">

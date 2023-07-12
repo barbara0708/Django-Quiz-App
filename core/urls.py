@@ -19,8 +19,7 @@ urlpatterns=[
 
 htmxurlpatterns=[
     path('categories/search/',views.search,name="search"),
-    path('categories/all/',views.all,name="all"),
-    path('progress/change_pic',views.change_pic,name='change_pic')
+    path('categories/all/',views.all,name="all")
 ]
 
 urlpatterns+=htmxurlpatterns

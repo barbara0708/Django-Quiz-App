@@ -2,7 +2,7 @@ from msilib.schema import ListView
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth import login,authenticate,logout
-from .forms import NewUserCreationForm
+from .forms import NewUserCreationForm, ProfileForm
 from django.contrib.auth.forms import AuthenticationForm
 from .models import Categories, UserInfo
 from category.models import Scores,Quiz
@@ -109,20 +109,28 @@ def upd_info(request):
 def progress(request):
     quiz_res=upd_info(request)
     amount=len(quiz_res)
+    form=ProfileForm(request.POST,request.FILES)
     additional_info=UserInfo.objects.get(user=request.user)
     if request.method=='GET':
-        return render(request,'core/progress.html',context={'quiz_res':quiz_res,'amount':amount,'info':additional_info})
+        return render(request,'core/progress.html',context={'quiz_res':quiz_res,'amount':amount,'info':additional_info,'form':form})
 
     if request.method=='POST':
+        if 'btnChangePicture' in request.POST:
+            form=ProfileForm(request.POST,request.FILES)
+            if form.is_valid():
+                form.save()
+                return redirect('success')
+            else:
+                form=ProfileForm()
+            return render(request, 'core/progress', {'form': form,'quiz_res':quiz_res,'amount':amount,'info':additional_info})
+        else:
+            quiz=request.POST.get('quizID')
+            Scores.objects.filter(quiz_id=quiz,user_id=request.user.id).delete()
+            quiz_res=upd_info(request)
+            return render(request,'core/progress.html',context={'quiz_res':quiz_res,'amount':amount,'info':additional_info})
 
-
-        quiz=request.POST.get('quizID')
-        Scores.objects.filter(quiz_id=quiz,user_id=request.user.id).delete()
-        quiz_res=upd_info(request)
-        return render(request,'core/progress.html',context={'quiz_res':quiz_res,'amount':amount,'info':additional_info})
-
-def search_view(request):
+def success(request):
     pass
 
-def change_pic(request):
+def search_view(request):
     pass
