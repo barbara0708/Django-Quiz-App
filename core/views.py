@@ -104,7 +104,7 @@ def upd_info(request):
         else:
             quiz_res[quiz].append(s)
     return quiz_res
-
+ 
 @login_required
 def progress(request):
     quiz_res=upd_info(request)
@@ -117,6 +117,9 @@ def progress(request):
     if request.method=='POST':
         if 'btnChangePicture' in request.POST:
             print('hello')
+            current_user=User.objects.get(id=request.user.id)
+            profile_user=UserInfo.objects.get(user__id=request.uesr.id)
+            form=ProfileForm(request.POST or None, request.FILES or None, instance=profile_user)
             # form=ProfileForm(request.POST,request.FILES)
             # if form.is_valid():
             #     form.save()
