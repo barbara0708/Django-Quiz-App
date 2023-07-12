@@ -116,7 +116,7 @@ def progress(request):
         return render(request,'core/progress.html',context={'quiz_res':quiz_res,'amount':amount,'info':additional_info,'form':form})
 
     if 'btnChangePicture' in request.POST:
-        # print('hello')
+        
         profile_user=UserInfo.objects.get(user__id=request.user.id)
         form=ProfileForm(request.POST or None, request.FILES or None, instance=profile_user)
         if form.is_valid():
