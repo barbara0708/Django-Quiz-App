@@ -104,6 +104,10 @@ def upd_info(request):
         else:
             quiz_res[quiz].append(s)
     return quiz_res
+
+def success(request):
+    pass
+
  
 @login_required
 def progress(request):
@@ -115,22 +119,16 @@ def progress(request):
         form=ProfileForm(request.POST or None, request.FILES or None, instance=profile_user)
         return render(request,'core/progress.html',context={'quiz_res':quiz_res,'amount':amount,'info':additional_info,'form':form})
 
-    if 'btnChangePicture' in request.POST:
-        
+    if 'btnChangePicture'in request.POST:
         profile_user=UserInfo.objects.get(user__id=request.user.id)
         form=ProfileForm(request.POST or None, request.FILES or None, instance=profile_user)
         if form.is_valid():
             form.save()
-
-            # form=ProfileForm(request.POST,request.FILES)
-            # if form.is_valid():
-            #     form.save()
-            #     return redirect('success')
-            # else:
-            #     form=ProfileForm()
-            return render(request, 'core/progress', {'form': form,'quiz_res':quiz_res,'amount':amount,'info':additional_info})
+        additional_info=UserInfo.objects.get(user=request.user)   
+        return redirect('progress') 
+        #return render(request, 'core/progress', {'form': form,'quiz_res':quiz_res,'amount':amount,'info':additional_info})
         
-    if request.method=='POST':
+    if (request.method=='POST') &('btnChangePicture' not in request.POST):
         quiz=request.POST.get('quizID')
         Scores.objects.filter(quiz_id=quiz,user_id=request.user.id).delete()
         quiz_res=upd_info(request)
