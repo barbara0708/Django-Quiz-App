@@ -21,9 +21,9 @@
                     style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
                     <img src="{{info.profile_pic.url}}"
                       alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
-                    <form  method="POST" >
+                    <form  method="POST" enctype="multipart/form-data" >
                       {% csrf_token %}
-                    {{form.as_p}}
+                      {{form.as_p}}
                       <button type="submit" name="btnChangePicture">Upload</button>
                     </form>
                       <h5>{{request.user.username}} </h5>

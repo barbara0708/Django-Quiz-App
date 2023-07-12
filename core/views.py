@@ -109,17 +109,19 @@ def upd_info(request):
 def progress(request):
     quiz_res=upd_info(request)
     amount=len(quiz_res)
-    form=ProfileForm(request.POST,request.FILES)
     additional_info=UserInfo.objects.get(user=request.user)
     if request.method=='GET':
+        profile_user=UserInfo.objects.get(user__id=request.user.id)
+        form=ProfileForm(request.POST or None, request.FILES or None, instance=profile_user)
         return render(request,'core/progress.html',context={'quiz_res':quiz_res,'amount':amount,'info':additional_info,'form':form})
 
-    if request.method=='POST':
-        if 'btnChangePicture' in request.POST:
-            print('hello')
-            current_user=User.objects.get(id=request.user.id)
-            profile_user=UserInfo.objects.get(user__id=request.uesr.id)
-            form=ProfileForm(request.POST or None, request.FILES or None, instance=profile_user)
+    if 'btnChangePicture' in request.POST:
+        # print('hello')
+        profile_user=UserInfo.objects.get(user__id=request.user.id)
+        form=ProfileForm(request.POST or None, request.FILES or None, instance=profile_user)
+        if form.is_valid():
+            form.save()
+
             # form=ProfileForm(request.POST,request.FILES)
             # if form.is_valid():
             #     form.save()
@@ -127,11 +129,12 @@ def progress(request):
             # else:
             #     form=ProfileForm()
             return render(request, 'core/progress', {'form': form,'quiz_res':quiz_res,'amount':amount,'info':additional_info})
-        else:
-            quiz=request.POST.get('quizID')
-            Scores.objects.filter(quiz_id=quiz,user_id=request.user.id).delete()
-            quiz_res=upd_info(request)
-            return render(request,'core/progress.html',context={'quiz_res':quiz_res,'amount':amount,'info':additional_info})
+        
+    if request.method=='POST':
+        quiz=request.POST.get('quizID')
+        Scores.objects.filter(quiz_id=quiz,user_id=request.user.id).delete()
+        quiz_res=upd_info(request)
+        return render(request,'core/progress.html',context={'quiz_res':quiz_res,'amount':amount,'info':additional_info})
 
 def success(request):
     pass
