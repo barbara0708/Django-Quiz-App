@@ -19,10 +19,10 @@
   .btn-primary {
     font-family: Raleway-SemiBold;
     font-size: 17px;
-    color: rgba(58, 133, 191, 0.75);
+    color: #bc76b9;
     letter-spacing: 1px;
     line-height: 15px;
-    border: 2px solid rgba(58, 133, 191, 0.75);
+    border: 2px solid #aa55a9;
     border-radius: 20px;
     background: transparent;
     transition: all 0.3s ease 0s;
@@ -30,14 +30,14 @@
   
   .btn-primary:hover {
     color: #FFF;
-    background: rgba(58, 133, 191, 0.75);
-    border: 2px solid rgba(58, 133, 191, 0.75);
+    background:#aa55a9;
+    border: 2px solid #bc76b9;
   }
   
   .btn-primary:focus{
     color: #FFF;
-    background: rgba(58, 133, 191, 0.75);
-    border: 2px solid rgba(58, 133, 191, 0.75);
+    background:#aa55a9;
+    border: 2px solid #bc76b9;
   }
 
   .btn-success {
