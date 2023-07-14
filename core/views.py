@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 import random
 from django.contrib.auth.models import User
 from .models import UserInfo
+from django.db.models import Max
 
 def index(request):
     ids=[]
@@ -104,16 +105,14 @@ def upd_info(request):
         else:
             quiz_res[quiz].append(s)
     return quiz_res
-
-def success(request):
-    pass
-
  
 @login_required
 def progress(request):
     quiz_res=upd_info(request)
     amount=len(quiz_res)
     additional_info=UserInfo.objects.get(user=request.user)
+    arr=quiz_res.values()
+    #LOOP THROUGH ALL SCORES 
     if request.method=='GET':
         profile_user=UserInfo.objects.get(user__id=request.user.id)
         form=ProfileForm(request.POST or None, request.FILES or None, instance=profile_user)
@@ -126,7 +125,6 @@ def progress(request):
             form.save()
         additional_info=UserInfo.objects.get(user=request.user)   
         return redirect('progress') 
-        #return render(request, 'core/progress', {'form': form,'quiz_res':quiz_res,'amount':amount,'info':additional_info})
         
     if (request.method=='POST') &('btnChangePicture' not in request.POST):
         quiz=request.POST.get('quizID')
@@ -134,8 +132,3 @@ def progress(request):
         quiz_res=upd_info(request)
         return render(request,'core/progress.html',context={'quiz_res':quiz_res,'amount':amount,'info':additional_info})
 
-def success(request):
-    pass
-
-def search_view(request):
-    pass
