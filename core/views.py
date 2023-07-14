@@ -111,12 +111,11 @@ def progress(request):
     quiz_res=upd_info(request)
     amount=len(quiz_res)
     additional_info=UserInfo.objects.get(user=request.user)
-    arr=quiz_res.values()
-    #LOOP THROUGH ALL SCORES 
+    max_value=Scores.objects.filter(user_id=request.user).aggregate(Max('points'))['points__max']
     if request.method=='GET':
         profile_user=UserInfo.objects.get(user__id=request.user.id)
         form=ProfileForm(request.POST or None, request.FILES or None, instance=profile_user)
-        return render(request,'core/progress.html',context={'quiz_res':quiz_res,'amount':amount,'info':additional_info,'form':form})
+        return render(request,'core/progress.html',context={'quiz_res':quiz_res,'amount':amount,'info':additional_info,'form':form,'max':max_value})
 
     if 'btnChangePicture'in request.POST:
         profile_user=UserInfo.objects.get(user__id=request.user.id)
@@ -130,5 +129,5 @@ def progress(request):
         quiz=request.POST.get('quizID')
         Scores.objects.filter(quiz_id=quiz,user_id=request.user.id).delete()
         quiz_res=upd_info(request)
-        return render(request,'core/progress.html',context={'quiz_res':quiz_res,'amount':amount,'info':additional_info})
+        return render(request,'core/progress.html',context={'quiz_res':quiz_res,'amount':amount,'info':additional_info,'max':max_value})
 
